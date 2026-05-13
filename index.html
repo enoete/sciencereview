@@ -1,2462 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adiaha's Science Superpowers 🔬✨</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adiaha's Research Guide — Technology has made us isolated</title>
 <style>
   :root {
-    --hot-pink: #FF2D78;
-    --electric-blue: #00C8FF;
-    --lime: #B8FF00;
-    --purple: #9B4DFF;
-    --orange: #FF7B00;
-    --teal: #00FFD1;
-    --yellow: #FFE800;
-    --deep-bg: #0A0A1A;
-    --card-bg: #13132A;
-    --card2: #1A1A35;
-    --text: #F0F0FF;
-    --muted: #9999BB;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--deep-bg);
-    color: var(--text);
-    font-family: 'Nunito', sans-serif;
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* ===== HERO ===== */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 20% 50%, #2D0066 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, #003366 0%, transparent 60%),
-                radial-gradient(ellipse at 60% 80%, #330033 0%, transparent 60%),
-                var(--deep-bg);
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .stars {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: white;
-    animation: twinkle var(--dur, 2s) infinite alternate;
-  }
-
-  @keyframes twinkle {
-    from { opacity: 0.1; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1.3); }
-  }
-
-  .hero-badge {
-    background: linear-gradient(135deg, var(--hot-pink), var(--purple));
-    border-radius: 100px;
-    padding: 8px 22px;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: inline-block;
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .hero h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(3rem, 10vw, 7rem);
-    line-height: 1;
-    background: linear-gradient(135deg, var(--yellow), var(--hot-pink), var(--electric-blue), var(--lime));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 10px;
-    animation: shimmer 4s ease-in-out infinite;
-    background-size: 300% 300%;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 3vw, 1.4rem);
-    color: var(--teal);
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .exam-date {
-    background: rgba(255,255,255,0.08);
-    border: 2px solid var(--yellow);
-    border-radius: 12px;
-    padding: 10px 24px;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--yellow);
-    display: inline-block;
-    margin: 20px 0;
-    animation: pulseBorder 2s ease-in-out infinite;
-  }
-
-  @keyframes pulseBorder {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255,232,0,0.4); }
-    50% { box-shadow: 0 0 0 12px rgba(255,232,0,0); }
-  }
-
-  .emoji-row {
-    font-size: 2.5rem;
-    margin: 10px 0;
-    animation: float 2s ease-in-out infinite;
-  }
-
-  .nav-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 30px;
-    max-width: 700px;
-  }
-
-  .nav-pill {
-    background: rgba(255,255,255,0.07);
-    border: 2px solid rgba(255,255,255,0.15);
-    border-radius: 100px;
-    padding: 8px 18px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    color: var(--text);
-  }
-
-  .nav-pill:hover {
-    background: var(--hot-pink);
-    border-color: var(--hot-pink);
-    transform: scale(1.05);
-  }
-
-  /* ===== SECTION LAYOUT ===== */
-  .section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 20px;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .section-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    flex-shrink: 0;
-  }
-
-  .section-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(2rem, 5vw, 3rem);
-    line-height: 1.1;
-  }
-
-  /* ===== CARDS ===== */
-  .card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 28px;
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-
-  .card-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-  }
-
-  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-
-  /* ===== STORY BOX ===== */
-  .story-box {
-    background: linear-gradient(135deg, rgba(155,77,255,0.2), rgba(0,200,255,0.1));
-    border: 2px solid rgba(155,77,255,0.5);
-    border-radius: 20px;
-    padding: 24px;
-    margin: 20px 0;
-    position: relative;
-  }
-
-  .story-box::before {
-    content: attr(data-emoji);
-    font-size: 2rem;
-    position: absolute;
-    top: -18px;
-    left: 20px;
-  }
-
-  .story-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--purple);
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
-
-  /* ===== DIVIDER ===== */
-  .wave-divider {
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-
-  /* ===== FORCE VISUALIZER ===== */
-  .force-demo {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 28px;
-    text-align: center;
-    border: 2px solid rgba(255,123,0,0.3);
-  }
-
-  .force-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 16px 0;
-  }
-
-  .force-btn {
-    padding: 10px 20px;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-  }
-
-  .force-btn:hover { transform: scale(1.07); }
-
-  .force-canvas-wrap {
-    background: rgba(0,0,0,0.3);
-    border-radius: 16px;
-    padding: 16px;
-    margin: 16px 0;
-    min-height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* ===== TABLE ===== */
-  .fancy-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 8px;
-  }
-
-  .fancy-table th {
-    background: rgba(255,255,255,0.05);
-    padding: 14px 18px;
-    text-align: left;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--muted);
-  }
-
-  .fancy-table td {
-    background: var(--card2);
-    padding: 14px 18px;
-    vertical-align: top;
-  }
-
-  .fancy-table tr td:first-child { border-radius: 12px 0 0 12px; }
-  .fancy-table tr td:last-child { border-radius: 0 12px 12px 0; }
-
-  .force-tag {
-    display: inline-block;
-    border-radius: 100px;
-    padding: 4px 14px;
-    font-size: 0.8rem;
-    font-weight: 800;
-  }
-
-  /* ===== MACHINES GRID ===== */
-  .machine-card {
-    background: var(--card2);
-    border-radius: 18px;
-    padding: 20px;
-    text-align: center;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-
-  .machine-card:hover {
-    transform: translateY(-6px) rotate(1deg);
-  }
-
-  .machine-emoji { font-size: 3.5rem; margin-bottom: 10px; display: block; }
-  .machine-name { font-family: 'Fredoka One', cursive; font-size: 1.3rem; margin-bottom: 6px; }
-  .machine-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
-  .machine-eg { font-size: 0.8rem; font-weight: 700; margin-top: 8px; }
-
-  /* ===== ENERGY TYPES ===== */
-  .energy-wheel {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-    margin: 20px 0;
-  }
-
-  .energy-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    background: var(--card2);
-    border-radius: 16px;
-    padding: 16px 20px;
-    min-width: 110px;
-    border: 2px solid transparent;
-    transition: all 0.2s;
-    cursor: default;
-  }
-
-  .energy-item:hover {
-    transform: scale(1.07);
-  }
-
-  .energy-emoji { font-size: 2.5rem; }
-  .energy-label { font-size: 0.85rem; font-weight: 800; text-align: center; }
-  .energy-sub { font-size: 0.75rem; color: var(--muted); text-align: center; }
-
-  /* ===== PE/KE ANIMATOR ===== */
-  .ke-pe-demo {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 28px;
-    border: 2px solid rgba(0,255,209,0.3);
-  }
-
-  #ballCanvas {
-    width: 100%;
-    height: 200px;
-    border-radius: 12px;
-    background: linear-gradient(to bottom, #0A1628, #1A3050);
-    display: block;
-  }
-
-  .pe-ke-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-
-  .pe-label { color: var(--purple); font-weight: 800; font-size: 0.9rem; }
-  .ke-label { color: var(--orange); font-weight: 800; font-size: 0.9rem; }
-
-  /* ===== RENEWABLE/NON ===== */
-  .energy-source-btn {
-    padding: 12px 20px;
-    border-radius: 12px;
-    border: 2px solid;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    background: transparent;
-    transition: all 0.2s;
-    color: var(--text);
-  }
-
-  .energy-source-btn.renewable { border-color: var(--lime); }
-  .energy-source-btn.renewable:hover { background: var(--lime); color: #111; }
-  .energy-source-btn.nonrenewable { border-color: #FF4444; }
-  .energy-source-btn.nonrenewable:hover { background: #FF4444; }
-
-  /* ===== TRANSFER ACCORDION ===== */
-  .accordion-item {
-    background: var(--card2);
-    border-radius: 16px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    border: 2px solid rgba(255,255,255,0.06);
-  }
-
-  .accordion-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 22px;
-    cursor: pointer;
-    transition: background 0.2s;
-    user-select: none;
-  }
-
-  .accordion-header:hover { background: rgba(255,255,255,0.05); }
-
-  .accordion-arrow {
-    margin-left: auto;
-    font-size: 1.2rem;
-    transition: transform 0.3s;
-  }
-
-  .accordion-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 22px;
-  }
-
-  .accordion-body.open { max-height: 300px; padding: 0 22px 18px; }
-  .accordion-header.open .accordion-arrow { transform: rotate(180deg); }
-
-  /* ===== QUIZ ===== */
-  #quiz-section {
-    background: radial-gradient(ellipse at 30% 40%, rgba(255,45,120,0.15), transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(0,200,255,0.1), transparent 60%),
-                var(--deep-bg);
-    padding: 80px 20px;
-  }
-
-  .quiz-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .quiz-progress {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
-
-  .q-dot {
-    width: 28px;
-    height: 8px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.15);
-    transition: all 0.3s;
-  }
-
-  .q-dot.done { background: var(--lime); }
-  .q-dot.active { background: var(--hot-pink); width: 44px; }
-  .q-dot.wrong { background: #FF4444; }
-
-  .quiz-card {
-    background: var(--card-bg);
-    border-radius: 24px;
-    padding: 36px;
-    border: 2px solid rgba(255,255,255,0.08);
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .q-number {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 8px;
-    font-weight: 800;
-  }
-
-  .q-text {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-    line-height: 1.3;
-    margin-bottom: 28px;
-    flex-grow: 1;
-  }
-
-  .q-emoji {
-    font-size: 3rem;
-    margin-bottom: 12px;
-    display: block;
-    animation: float 2s ease-in-out infinite;
-  }
-
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  @media (max-width: 500px) { .options-grid { grid-template-columns: 1fr; } }
-
-  .option-btn {
-    background: var(--card2);
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 14px;
-    padding: 14px 18px;
-    cursor: pointer;
-    text-align: left;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text);
-    transition: all 0.2s;
-    line-height: 1.4;
-  }
-
-  .option-btn:hover:not(:disabled) {
-    background: rgba(155,77,255,0.2);
-    border-color: var(--purple);
-    transform: scale(1.02);
-  }
-
-  .option-btn.correct {
-    background: rgba(184,255,0,0.2);
-    border-color: var(--lime);
-    color: var(--lime);
-  }
-
-  .option-btn.wrong {
-    background: rgba(255,68,68,0.2);
-    border-color: #FF4444;
-    color: #FF7777;
-  }
-
-  .feedback-box {
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: 14px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    display: none;
-  }
-
-  .feedback-box.correct-fb {
-    background: rgba(184,255,0,0.1);
-    border: 2px solid rgba(184,255,0,0.4);
-    color: var(--lime);
-    display: block;
-  }
-
-  .feedback-box.wrong-fb {
-    background: rgba(255,68,68,0.1);
-    border: 2px solid rgba(255,68,68,0.4);
-    color: #FF9999;
-    display: block;
-  }
-
-  .quiz-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 24px;
-    gap: 12px;
-  }
-
-  .quiz-score-badge {
-    background: rgba(255,255,255,0.07);
-    border-radius: 100px;
-    padding: 8px 18px;
-    font-weight: 800;
-    font-size: 0.9rem;
-  }
-
-  .btn {
-    padding: 12px 28px;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    transition: all 0.2s;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, var(--hot-pink), var(--purple));
-    color: white;
-  }
-
-  .btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(155,77,255,0.4); }
-
-  .btn-secondary {
-    background: rgba(255,255,255,0.08);
-    color: var(--text);
-    border: 2px solid rgba(255,255,255,0.12);
-  }
-
-  .btn-secondary:hover { background: rgba(255,255,255,0.14); }
-
-  /* ===== RESULTS SCREEN ===== */
-  .results-screen {
-    text-align: center;
-    padding: 20px;
-  }
-
-  .results-emoji { font-size: 5rem; margin-bottom: 16px; animation: float 2s infinite; display: block; }
-  .results-title { font-family: 'Fredoka One', cursive; font-size: 3rem; margin-bottom: 8px; }
-  .results-score { font-size: 1.2rem; color: var(--muted); margin-bottom: 24px; }
-  .results-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 100px; height: 16px; margin: 20px 0; overflow: hidden; }
-  .results-bar { height: 100%; border-radius: 100px; transition: width 1s ease; }
-  .results-msg { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; line-height: 1.5; }
-  .wrong-review { text-align: left; background: var(--card2); border-radius: 16px; padding: 20px; margin: 20px 0; }
-  .review-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .review-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .review-q { font-weight: 800; margin-bottom: 4px; font-size: 0.9rem; }
-  .review-a { font-size: 0.85rem; color: var(--lime); }
-  .review-wrong { font-size: 0.85rem; color: #FF9999; }
-
-  /* ===== MISC ===== */
-  .highlight { color: var(--yellow); font-weight: 800; }
-  .pink { color: var(--hot-pink); }
-  .blue { color: var(--electric-blue); }
-  .lime { color: var(--lime); }
-  .purple { color: var(--purple); }
-  .orange { color: var(--orange); }
-  .teal { color: var(--teal); }
-
-  .tag {
-    display: inline-block;
-    border-radius: 100px;
-    padding: 3px 12px;
-    font-size: 0.78rem;
-    font-weight: 800;
-    margin: 2px;
-  }
-
-  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-
-  p { line-height: 1.7; margin-bottom: 10px; }
-  ul { padding-left: 20px; }
-  li { line-height: 1.8; margin-bottom: 4px; }
-
-  .section-divider {
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--hot-pink), var(--purple), var(--electric-blue), transparent);
-    margin: 10px 0;
-    border: none;
-  }
-
-  /* ===== MATCHING GAME ===== */
-  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .match-col { display: flex; flex-direction: column; gap: 8px; }
-  .match-item {
-    padding: 12px 16px;
-    border-radius: 12px;
-    border: 2px solid;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-    user-select: none;
-  }
-
-  .match-item:hover { transform: scale(1.03); }
-  .match-item.selected { transform: scale(1.05); }
-  .match-item.matched { opacity: 0.5; pointer-events: none; }
-
-  /* ===== SCROLL REVEAL ===== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ===== PROGRESS BAR TOP ===== */
-  #page-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: linear-gradient(to right, var(--hot-pink), var(--purple), var(--electric-blue));
-    z-index: 1000;
-    transition: width 0.1s;
-  }
-
-  /* ===== FLOATING TOC ===== */
-  .toc-fab {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--hot-pink), var(--purple));
-    border: none;
-    cursor: pointer;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 24px rgba(155,77,255,0.5);
-    z-index: 999;
-    transition: transform 0.2s;
-  }
-
-  .toc-fab:hover { transform: scale(1.1); }
-
-  .toc-menu {
-    position: fixed;
-    bottom: 90px;
-    right: 24px;
-    background: var(--card-bg);
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 12px;
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 998;
-    min-width: 200px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  }
-
-  .toc-menu.open { display: flex; }
-  .toc-link { 
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--text);
-    font-weight: 700;
-    font-size: 0.88rem;
-    transition: background 0.15s;
-  }
-  .toc-link:hover { background: rgba(255,255,255,0.08); }
-
-  /* BRIDGE SVG ANIMATION */
-  @keyframes sway {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(4px); }
-  }
-
-  .bridge-cable { animation: sway 2.5s ease-in-out infinite; }
-
-  /* HEAT TRANSFER ANIMATION */
-  .particle {
-    animation: particleMove var(--d, 3s) ease-in-out infinite alternate;
-  }
-
-  @keyframes particleMove {
-    from { transform: translate(0, 0); }
-    to { transform: translate(var(--tx, 20px), var(--ty, -20px)); }
-  }
-
-  /* CONSERVATION ICONS */
-  .conserve-card {
-    background: var(--card2);
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    border: 2px solid rgba(184,255,0,0.2);
-    transition: all 0.3s;
-  }
-
-  .conserve-card:hover {
-    border-color: var(--lime);
-    box-shadow: 0 0 20px rgba(184,255,0,0.15);
-  }
-
-  .quiz-hidden { display: none; }
-  
-  @media (max-width: 600px) {
-    .match-grid { grid-template-columns: 1fr; }
-    .quiz-nav { flex-wrap: wrap; }
-    .options-grid { grid-template-columns: 1fr; }
-  }
+    --gold: #c8a84b; --gold-light: #f0dfa0; --gold-pale: #fdf8ec;
+    --teal: #1a7a6e; --teal-light: #d0ede9;
+    --bg: #fafaf8; --surface: #ffffff; --border: #e8e4dc;
+    --text: #1c1c1a; --muted: #6b6860; --hint: #9b9790;
+    --success: #2a7a4e; --danger: #c0392b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  .topbar { background: var(--teal); color: white; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+  .topbar-title { font-size: 15px; font-weight: normal; letter-spacing: 0.04em; }
+  .topbar-title span { opacity: 0.7; font-size: 13px; margin-left: 10px; }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .autosave-indicator { font-size: 12px; font-family: 'Arial', sans-serif; opacity: 0.8; min-width: 70px; text-align: right; }
+  .btn-icon { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 14px; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: 'Georgia', serif; transition: background 0.15s; }
+  .btn-icon:hover { background: rgba(255,255,255,0.25); }
+  .container { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .hero { text-align: center; margin-bottom: 2.5rem; padding: 2rem 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+  .hero-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .hero h1 { font-size: 26px; font-weight: normal; color: var(--text); line-height: 1.35; margin-bottom: 8px; }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+  .hero-sub { font-size: 14px; color: var(--muted); font-family: 'Arial', sans-serif; }
+  .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 2rem; }
+  .tab { padding: 10px 18px; font-size: 13px; font-family: 'Arial', sans-serif; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--teal); border-bottom-color: var(--teal); font-weight: bold; }
+  .section-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin: 2rem 0 1rem; padding-bottom: 6px; border-bottom: 1px solid var(--gold-light); }
+  .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+  .q-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); font-family: 'Arial', sans-serif; font-weight: bold; }
+  .q-badge { font-size: 11px; background: var(--teal-light); color: var(--teal); padding: 2px 10px; border-radius: 20px; font-family: 'Arial', sans-serif; }
+  .q-text { font-size: 16px; line-height: 1.55; color: var(--text); margin-bottom: 8px; }
+  .q-hint { font-size: 13px; color: var(--hint); font-family: 'Arial', sans-serif; line-height: 1.6; margin-bottom: 12px; padding-left: 10px; border-left: 2px solid var(--gold-light); }
+  textarea.q-answer { width: 100%; min-height: 90px; resize: vertical; padding: 10px 12px; font-size: 14px; line-height: 1.65; font-family: 'Arial', sans-serif; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.15s; outline: none; }
+  textarea.q-answer:focus { border-color: var(--teal); background: #fff; }
+  .progress-bar-wrap { background: var(--border); border-radius: 4px; height: 5px; margin-bottom: 6px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--teal); border-radius: 4px; transition: width 0.3s; width: 0%; }
+  .progress-label { font-size: 12px; font-family: 'Arial', sans-serif; color: var(--muted); margin-bottom: 1.5rem; }
+  /* EXAMPLES */
+  .ex-section { margin-bottom: 2.5rem; }
+  .ex-section-title { font-size: 20px; font-weight: normal; color: var(--text); margin-bottom: 4px; }
+  .ex-word { color: var(--teal); font-size: 24px; }
+  .ex-section-desc { font-size: 14px; color: var(--muted); font-family: 'Arial', sans-serif; margin-bottom: 1.25rem; line-height: 1.65; border-left: 3px solid var(--gold-light); padding-left: 12px; }
+  .ex-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.4rem; margin-bottom: 1rem; }
+  .ex-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-family: 'Arial', sans-serif; font-weight: bold; margin-bottom: 8px; }
+  .ex-text { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; }
+  .ex-text strong { font-style: normal; color: var(--teal); }
+  .ex-why { font-size: 12px; color: var(--hint); font-family: 'Arial', sans-serif; margin-top: 10px; line-height: 1.55; padding-top: 8px; border-top: 1px solid var(--border); }
+  .ex-divider { border: none; border-top: 2px solid var(--border); margin: 2.5rem 0; }
+  /* STRATEGY */
+  .strategy-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .strategy-card h3 { font-size: 15px; font-weight: normal; color: var(--teal); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .phase-pill { font-size: 10px; font-family: 'Arial', sans-serif; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; background: var(--teal-light); color: var(--teal); padding: 2px 10px; border-radius: 20px; }
+  .strategy-card p, .strategy-card li { font-size: 14px; font-family: 'Arial', sans-serif; color: var(--muted); line-height: 1.75; }
+  .strategy-card ul, .strategy-card ol { padding-left: 1.3rem; margin-top: 6px; }
+  .strategy-card li { margin-bottom: 5px; }
+  .strategy-card strong { color: var(--text); }
+  /* SETTINGS */
+  .settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 199; display: none; }
+  .settings-overlay.open { display: block; }
+  .settings-panel { position: fixed; top: 0; right: -420px; width: 380px; height: 100vh; background: white; border-left: 1px solid var(--border); padding: 2rem 1.5rem; z-index: 200; transition: right 0.3s ease; overflow-y: auto; }
+  .settings-panel.open { right: 0; }
+  .settings-title { font-size: 16px; margin-bottom: 1.5rem; color: var(--text); display: flex; justify-content: space-between; align-items: center; }
+  .settings-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted); line-height: 1; }
+  .field-group { margin-bottom: 1.25rem; }
+  .field-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-family: 'Arial', sans-serif; font-weight: bold; display: block; margin-bottom: 6px; }
+  .field-input { width: 100%; padding: 9px 12px; font-size: 13px; font-family: monospace; border: 1px solid var(--border); border-radius: 6px; color: var(--text); background: var(--bg); outline: none; }
+  .field-input:focus { border-color: var(--teal); }
+  .field-hint { font-size: 12px; color: var(--hint); font-family: 'Arial', sans-serif; margin-top: 5px; line-height: 1.5; }
+  .settings-divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  .btn-settings-action { width: 100%; padding: 10px; margin-bottom: 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13px; font-family: 'Arial', sans-serif; cursor: pointer; transition: all 0.15s; }
+  .btn-settings-action:hover { border-color: var(--teal); color: var(--teal); }
+  .btn-settings-action.primary { background: var(--teal); color: white; border-color: var(--teal); }
+  .btn-settings-action.primary:hover { background: #145f55; }
+  #settings-status { font-size: 12px; font-family: 'Arial', sans-serif; margin-top: 10px; line-height: 1.6; min-height: 40px; color: var(--muted); white-space: pre-wrap; }
+  #settings-status.ok { color: var(--success); }
+  #settings-status.err { color: var(--danger); }
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--text); color: white; font-size: 13px; font-family: 'Arial', sans-serif; padding: 9px 20px; border-radius: 20px; display: none; z-index: 999; white-space: nowrap; }
+  .pane { display: none; }
+  .pane.active { display: block; }
 </style>
 </head>
 <body>
 
-<div id="page-progress"></div>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="stars" id="stars"></div>
-  
-  <div class="hero-badge">📅 Exam: June 17, 2026</div>
-  
-  <h1>Adiaha's<br>Science<br>Superpowers</h1>
-  
-  <p class="hero-sub">Grade 5 • Forces, Energy & You 🌍⚡</p>
-  
-  <div class="exam-date">🚨 Science Exam: Tuesday, June 17th — You've got this! 🚨</div>
-
-  <div class="emoji-row">🔬 ⚡ 🌀 🧲 🌞 💪</div>
-
-  <nav class="nav-pills">
-    <a class="nav-pill" href="#forces">💥 Forces & Motion</a>
-    <a class="nav-pill" href="#force-types">⚙️ Types of Forces</a>
-    <a class="nav-pill" href="#machines">🔧 Simple Machines</a>
-    <a class="nav-pill" href="#energy">⚡ Energy</a>
-    <a class="nav-pill" href="#pe-ke">🎢 KE & PE</a>
-    <a class="nav-pill" href="#transfer">🔥 Heat Transfer</a>
-    <a class="nav-pill" href="#renewable">🌱 Renewable Energy</a>
-    <a class="nav-pill" href="#conserve">♻️ Conserve & Preserve</a>
-    <a class="nav-pill" href="#quiz-section">🧪 Take the Quiz!</a>
-  </nav>
-</section>
-
-<!-- ======================================================
-     SECTION 1: FORCES & MOTION
-     ====================================================== -->
-<section class="section reveal" id="forces">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#FF2D78,#FF7B00)">💥</div>
-    <div>
-      <div class="section-title" style="color:var(--hot-pink)">Forces & Motion</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">Push it. Pull it. Make it MOVE. 🚀</div>
-    </div>
+<div class="topbar">
+  <div class="topbar-title">Adiaha's Research Guide <span>Technology has made us isolated</span></div>
+  <div class="topbar-right">
+    <div class="autosave-indicator" id="autosave-indicator"></div>
+    <button class="btn-icon" onclick="openSettings()">&#9881; Settings</button>
   </div>
-
-  <!-- Story -->
-  <div class="story-box" data-emoji="🎭">
-    <div class="story-label">Imagine This ✨</div>
-    <p>It's lunchtime at CFBC Primary. <span class="highlight">Zalia</span> pushes open the cafeteria door — that's a <span class="pink">PUSH</span>. <span class="highlight">Markisio</span> pulls his chair out — that's a <span class="blue">PULL</span>. <span class="highlight">Adiaha</span> spins her water bottle on the table — that's a <span class="teal">TWIST (Torsion!)</span>. Every single move your body makes involves a <span class="yellow">FORCE</span>! 🍽️</p>
-  </div>
-
-  <div class="grid-2" style="margin-top:20px">
-    <div class="card" style="border-color:rgba(255,45,120,0.3)">
-      <div class="card-title">🤜 What is a Force?</div>
-      <p>A <span class="highlight">force</span> is a <strong>push or a pull</strong> that can:</p>
-      <ul>
-        <li>▶️ <strong>Start</strong> an object moving</li>
-        <li>⏹️ <strong>Stop</strong> a moving object</li>
-        <li>↩️ <strong>Change the direction</strong> of motion</li>
-        <li>🔄 <strong>Change the shape</strong> of an object</li>
-      </ul>
-      <div class="story-box" style="margin-top:14px;padding:14px 18px;" data-emoji="💡">
-        <div class="story-label">Quick Analogy</div>
-        <p style="font-size:0.9rem;">Forces are like the DJ at a party — they control what moves, when it moves, and how fast! 🎧</p>
-      </div>
-    </div>
-
-    <div class="card" style="border-color:rgba(0,200,255,0.3)">
-      <div class="card-title">🏃 Push vs. Pull</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-        <div style="background:rgba(255,45,120,0.15);border-radius:14px;padding:16px;border:2px solid rgba(255,45,120,0.4);text-align:center">
-          <div style="font-size:2.5rem">🙌</div>
-          <div style="font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--hot-pink)">PUSH</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-top:6px">Moves object <strong>away</strong> from you</div>
-          <div style="font-size:0.78rem;margin-top:8px">Examples: Pushing a shopping cart, kicking a ball, pressing a button</div>
-        </div>
-        <div style="background:rgba(0,200,255,0.15);border-radius:14px;padding:16px;border:2px solid rgba(0,200,255,0.4);text-align:center">
-          <div style="font-size:2.5rem">🤲</div>
-          <div style="font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--electric-blue)">PULL</div>
-          <div style="font-size:0.82rem;color:var(--muted);margin-top:6px">Brings object <strong>toward</strong> you</div>
-          <div style="font-size:0.78rem;margin-top:8px">Examples: Pulling a drawer, opening a door, reeling in a fishing line</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Interactive Force Demo -->
-  <div class="force-demo reveal" style="margin-top:20px">
-    <div class="card-title">🎮 Force Simulator — Try It!</div>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:4px">Pick a scenario to see forces in action:</p>
-    <div class="force-buttons">
-      <button class="force-btn" style="background:var(--hot-pink);color:white" onclick="showForce('push')">🙌 Push a Cart</button>
-      <button class="force-btn" style="background:var(--electric-blue);color:#000" onclick="showForce('pull')">🤲 Pull a Rope</button>
-      <button class="force-btn" style="background:var(--lime);color:#000" onclick="showForce('gravity')">🌍 Gravity Drop</button>
-      <button class="force-btn" style="background:var(--purple);color:white" onclick="showForce('stop')">⏹️ Friction Stop</button>
-    </div>
-    <div class="force-canvas-wrap" id="forceDisplay">
-      <div style="color:var(--muted);font-size:0.95rem">👆 Tap a button above to see a force in action!</div>
-    </div>
-    <div id="forceExplain" style="font-size:0.9rem;color:var(--muted);min-height:40px;text-align:left;padding:0 8px"></div>
-  </div>
-
-  <!-- Contact vs Non-Contact -->
-  <div class="grid-2" style="margin-top:20px">
-    <div class="card reveal" style="border-color:rgba(255,123,0,0.4)">
-      <div class="card-title" style="color:var(--orange)">👋 Contact Forces</div>
-      <p style="font-size:0.9rem;color:var(--muted)">Must <strong>touch</strong> the object to affect it</p>
-      <div class="pill-list">
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Friction 🛹</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Air Resistance 💨</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Applied Force 💪</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Normal Force ⬆️</span>
-      </div>
-      <div class="story-box" style="margin-top:12px;padding:12px 16px;" data-emoji="🛹">
-        <div class="story-label">Real Talk</div>
-        <p style="font-size:0.85rem;"><span class="highlight">Shiloh</span> slides in socks on the hallway floor — <strong>friction</strong> slows her down when the socks grip the floor. That's a contact force! ✨</p>
-      </div>
-    </div>
-
-    <div class="card reveal" style="border-color:rgba(155,77,255,0.4)">
-      <div class="card-title" style="color:var(--purple)">🌌 Non-Contact Forces</div>
-      <p style="font-size:0.9rem;color:var(--muted)">Work <strong>WITHOUT touching</strong> the object</p>
-      <div class="pill-list">
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Gravity 🌍</span>
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Magnetism 🧲</span>
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Electric Force ⚡</span>
-      </div>
-      <div class="story-box" style="margin-top:12px;padding:12px 16px;" data-emoji="🧲">
-        <div class="story-label">Real Talk</div>
-        <p style="font-size:0.85rem;"><span class="highlight">Vihan</span> drops his pencil — it falls to the floor WITHOUT the Earth touching it. That's <strong>gravity</strong>! A non-contact force that pulls everything with mass toward Earth's center. 🌐</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Gravity deeper -->
-  <div class="card reveal" style="margin-top:20px;background:linear-gradient(135deg,rgba(155,77,255,0.15),rgba(0,200,255,0.08));border-color:rgba(155,77,255,0.4)">
-    <div class="card-title">🌍 Gravity — The Universe's Magnet</div>
-    <div class="grid-2">
-      <div>
-        <ul>
-          <li>Pulls objects toward the <span class="highlight">center of the Earth</span></li>
-          <li>It's why things <span class="blue">fall down</span> — always</li>
-          <li>Acts on <span class="lime">everything that has mass</span></li>
-          <li>It's a <span class="purple">non-contact force</span></li>
-          <li>The bigger the mass, the stronger the gravity</li>
-        </ul>
-      </div>
-      <div class="story-box" data-emoji="🎢" style="margin:0">
-        <div class="story-label">Analogy Alert!</div>
-        <p style="font-size:0.88rem;">Think of gravity like an invisible hand that's <em>always</em> gently pulling everything downward. It's why <span class="highlight">Amar'J's</span> juice box falls off the lunch table, <span class="highlight">Jordan</span>'s ball comes back down after being thrown, and why YOU don't float off into space during recess! 🚀</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 2: INTERNAL FORCES ON STRUCTURES
-     ====================================================== -->
-<section class="section reveal" id="force-types">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#00C8FF,#B8FF00)">🏗️</div>
-    <div>
-      <div class="section-title" style="color:var(--electric-blue)">Forces on Structures</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">What goes on INSIDE buildings, bridges & bones 🦴</div>
-    </div>
-  </div>
-
-  <div class="story-box" data-emoji="🏠" style="background:linear-gradient(135deg,rgba(0,200,255,0.15),rgba(184,255,0,0.08));border-color:rgba(0,200,255,0.4)">
-    <div class="story-label">Did You Know?</div>
-    <p>When <span class="highlight">Luke</span> sits on his chair, <span class="highlight">Sydney</span> leans on a wall, or <span class="highlight">Andre</span> stretches a rubber band — forces are happening <em>inside</em> the material itself! These are called <span class="highlight">internal forces</span>.</p>
-  </div>
-
-  <!-- Internal forces table -->
-  <div class="card reveal" style="margin-top:20px;overflow-x:auto">
-    <div class="card-title">The 4 Internal Forces 🔍</div>
-    <table class="fancy-table" style="min-width:600px">
-      <thead>
-        <tr>
-          <th>Force</th>
-          <th>What It Does</th>
-          <th>Body Analogy</th>
-          <th>Real Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(255,123,0,0.25);color:var(--orange)">COMPRESSION 🧱</span></td>
-          <td>Squashing / pushing inward — the material <strong>pushes BACK</strong></td>
-          <td>Like hugging a pillow — it squashes but pushes back</td>
-          <td><span class="highlight">Coryn</span> sits on a chair → legs push back from inside so they don't crush</td>
-        </tr>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(0,200,255,0.25);color:var(--electric-blue)">TENSION 🪢</span></td>
-          <td>Stretching / pulling apart — material <strong>pulls BACK together</strong></td>
-          <td>Like stretching a rubber band — it wants to go back</td>
-          <td>A bridge cable is pulled tight — the inside of the cable resists snapping</td>
-        </tr>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(155,77,255,0.25);color:var(--purple)">SHEAR ✂️</span></td>
-          <td>One part tries to slide past another — material <strong>resists sliding</strong></td>
-          <td>Like slipping on ice — your shoe resists sliding sideways</td>
-          <td>Strong wind hits a wall — layers inside the wall grab each other to not slide apart</td>
-        </tr>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(184,255,0,0.25);color:var(--lime)">TORSION 🌀</span></td>
-          <td>Twisting — material <strong>resists the twist</strong></td>
-          <td>Like wringing out a wet towel — it fights the twist</td>
-          <td><span class="highlight">Adiaha</span> twists a bottle cap → inside the cap fights to hold its shape</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Visual internal force cards -->
-  <div class="grid-2 reveal" style="margin-top:20px">
-    <!-- Compression animation -->
-    <div class="card" style="border-color:rgba(255,123,0,0.4);text-align:center">
-      <div class="card-title" style="color:var(--orange)">🧱 Compression</div>
-      <svg viewBox="0 0 200 120" width="100%" style="max-width:240px">
-        <rect x="60" y="20" width="80" height="80" rx="8" fill="rgba(255,123,0,0.3)" stroke="#FF7B00" stroke-width="2"/>
-        <!-- arrows pushing in -->
-        <g fill="#FF7B00">
-          <polygon points="55,60 35,50 35,70" />
-          <polygon points="145,60 165,50 165,70" />
-        </g>
-        <line x1="35" y1="60" x2="60" y2="60" stroke="#FF7B00" stroke-width="3"/>
-        <line x1="140" y1="60" x2="165" y2="60" stroke="#FF7B00" stroke-width="3"/>
-        <!-- squash effect lines -->
-        <line x1="70" y1="55" x2="130" y2="55" stroke="rgba(255,200,0,0.5)" stroke-width="1.5" stroke-dasharray="4"/>
-        <line x1="70" y1="60" x2="130" y2="60" stroke="rgba(255,200,0,0.5)" stroke-width="1.5" stroke-dasharray="4"/>
-        <line x1="70" y1="65" x2="130" y2="65" stroke="rgba(255,200,0,0.5)" stroke-width="1.5" stroke-dasharray="4"/>
-        <text x="100" y="115" text-anchor="middle" fill="#FF7B00" font-size="11" font-family="Nunito">Squashing inward</text>
-      </svg>
-      <p style="font-size:0.85rem;color:var(--muted);margin-top:8px">Chair legs, bridge supports, building columns all deal with compression from the weight above.</p>
-    </div>
-
-    <!-- Tension animation -->
-    <div class="card" style="border-color:rgba(0,200,255,0.4);text-align:center">
-      <div class="card-title" style="color:var(--electric-blue)">🪢 Tension</div>
-      <svg viewBox="0 0 200 120" width="100%" style="max-width:240px">
-        <rect x="70" y="50" width="60" height="20" rx="4" fill="rgba(0,200,255,0.3)" stroke="#00C8FF" stroke-width="2"/>
-        <g fill="#00C8FF">
-          <polygon points="25,60 45,50 45,70"/>
-          <polygon points="175,60 155,50 155,70"/>
-        </g>
-        <line x1="45" y1="60" x2="70" y2="60" stroke="#00C8FF" stroke-width="3"/>
-        <line x1="130" y1="60" x2="155" y2="60" stroke="#00C8FF" stroke-width="3"/>
-        <text x="100" y="100" text-anchor="middle" fill="#00C8FF" font-size="10" font-family="Nunito">Stretching apart</text>
-        <text x="100" y="115" text-anchor="middle" fill="rgba(0,200,255,0.6)" font-size="9" font-family="Nunito">Material pulls back together</text>
-      </svg>
-      <p style="font-size:0.85rem;color:var(--muted);margin-top:8px">Bridge cables, guitar strings, and tug-of-war ropes all experience tension — being pulled from both ends!</p>
-    </div>
-
-    <!-- Shear -->
-    <div class="card reveal" style="border-color:rgba(155,77,255,0.4);text-align:center">
-      <div class="card-title" style="color:var(--purple)">✂️ Shear</div>
-      <svg viewBox="0 0 200 120" width="100%" style="max-width:240px">
-        <rect x="60" y="30" width="80" height="30" rx="4" fill="rgba(155,77,255,0.4)" stroke="#9B4DFF" stroke-width="2"/>
-        <rect x="70" y="60" width="80" height="30" rx="4" fill="rgba(155,77,255,0.2)" stroke="#9B4DFF" stroke-width="2" stroke-dasharray="4"/>
-        <line x1="100" y1="60" x2="100" y2="60" stroke="#9B4DFF" stroke-width="2"/>
-        <g fill="#9B4DFF">
-          <polygon points="165,45 145,38 145,52"/>
-        </g>
-        <line x1="100" y1="45" x2="145" y2="45" stroke="#9B4DFF" stroke-width="2"/>
-        <g fill="rgba(155,77,255,0.7)">
-          <polygon points="55,75 75,68 75,82"/>
-        </g>
-        <line x1="75" y1="75" x2="110" y2="75" stroke="rgba(155,77,255,0.7)" stroke-width="2"/>
-        <text x="100" y="112" text-anchor="middle" fill="#9B4DFF" font-size="10" font-family="Nunito">Sliding in opposite directions</text>
-      </svg>
-      <p style="font-size:0.85rem;color:var(--muted);margin-top:8px">Scissors use shear force to cut paper. Earthquakes cause shear in the ground and buildings!</p>
-    </div>
-
-    <!-- Torsion -->
-    <div class="card reveal" style="border-color:rgba(184,255,0,0.4);text-align:center">
-      <div class="card-title" style="color:var(--lime)">🌀 Torsion</div>
-      <svg viewBox="0 0 200 120" width="100%" style="max-width:240px">
-        <ellipse cx="100" cy="60" rx="40" ry="15" fill="rgba(184,255,0,0.2)" stroke="#B8FF00" stroke-width="2"/>
-        <path d="M60,60 Q100,20 140,60" fill="none" stroke="#B8FF00" stroke-width="2.5" stroke-dasharray="5,3"/>
-        <path d="M60,60 Q100,100 140,60" fill="none" stroke="rgba(184,255,0,0.5)" stroke-width="2" stroke-dasharray="5,3"/>
-        <!-- twist arrows -->
-        <text x="45" y="55" fill="#B8FF00" font-size="18">↻</text>
-        <text x="140" y="70" fill="rgba(184,255,0,0.6)" font-size="18">↺</text>
-        <text x="100" y="112" text-anchor="middle" fill="#B8FF00" font-size="10" font-family="Nunito">Twisting — material resists</text>
-      </svg>
-      <p style="font-size:0.85rem;color:var(--muted);margin-top:8px">Torsion hits bridges in heavy wind, your doorknob when you turn it, and even <span class="highlight">Zamari</span>'s juice cap! 🌀</p>
-    </div>
-  </div>
-
-  <!-- External vs Internal summary -->
-  <div class="card reveal" style="margin-top:20px;background:linear-gradient(135deg,rgba(255,45,120,0.1),rgba(0,200,255,0.08));border-color:rgba(255,45,120,0.3)">
-    <div class="card-title">Inside vs. Outside 📦</div>
-    <div class="grid-2">
-      <div>
-        <div style="color:var(--hot-pink);font-weight:800;margin-bottom:8px">🔴 External Forces (from outside)</div>
-        <ul style="font-size:0.9rem">
-          <li>Gravity pulling a bridge down</li>
-          <li>Wind pushing on a building</li>
-          <li>People walking on a floor</li>
-          <li>A car driving across a bridge</li>
-        </ul>
-      </div>
-      <div>
-        <div style="color:var(--electric-blue);font-weight:800;margin-bottom:8px">🔵 Internal Forces (from inside)</div>
-        <ul style="font-size:0.9rem">
-          <li>Tension in a bridge cable</li>
-          <li>Compression in a column</li>
-          <li>Shear in a wall panel</li>
-          <li>Torsion in a twisted bolt</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bridges SVG -->
-  <div class="card reveal" style="margin-top:20px;text-align:center;border-color:rgba(0,200,255,0.3)">
-    <div class="card-title">🌉 Forces on Bridges</div>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:16px">Different parts of a bridge handle different internal forces. Hover each part to learn more!</p>
-    <svg viewBox="0 0 600 220" width="100%" style="max-width:600px">
-      <!-- Sky -->
-      <rect width="600" height="220" fill="rgba(0,0,0,0)"/>
-      <!-- Water -->
-      <rect x="0" y="170" width="600" height="50" rx="4" fill="rgba(0,150,255,0.15)"/>
-      <!-- Towers -->
-      <rect class="bridge-cable" x="120" y="40" width="20" height="140" fill="#4488BB" rx="4"/>
-      <rect class="bridge-cable" x="460" y="40" width="20" height="140" fill="#4488BB" rx="4" style="animation-delay:0.3s"/>
-      <!-- Tower tops -->
-      <rect x="112" y="32" width="36" height="14" fill="#66AADD" rx="3"/>
-      <rect x="452" y="32" width="36" height="14" fill="#66AADD" rx="3"/>
-      <!-- Cables -->
-      <path class="bridge-cable" d="M130,42 Q300,110 470,42" fill="none" stroke="#00C8FF" stroke-width="3" style="animation-delay:0.1s"/>
-      <path class="bridge-cable" d="M130,42 Q300,160 470,42" fill="none" stroke="#00C8FF" stroke-width="3" stroke-dasharray="6,3" style="animation-delay:0.2s"/>
-      <!-- Deck -->
-      <rect x="0" y="160" width="600" height="12" fill="#334455" rx="3"/>
-      <!-- Vertical Suspenders -->
-      <line x1="200" y1="88" x2="200" y2="160" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
-      <line x1="260" y1="74" x2="260" y2="160" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
-      <line x1="320" y1="68" x2="320" y2="160" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
-      <line x1="380" y1="74" x2="380" y2="160" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
-      <line x1="440" y1="88" x2="440" y2="160" stroke="rgba(0,200,255,0.4)" stroke-width="2"/>
-      <!-- Labels -->
-      <rect x="240" y="6" width="120" height="22" rx="6" fill="rgba(0,200,255,0.2)"/>
-      <text x="300" y="20" text-anchor="middle" fill="#00C8FF" font-size="11" font-family="Nunito" font-weight="bold">TENSION in cables</text>
-      <rect x="90" y="90" width="30" height="16" rx="4" fill="rgba(255,123,0,0.25)"/>
-      <text x="105" y="101" text-anchor="middle" fill="#FF7B00" font-size="9" font-family="Nunito">COMP.</text>
-      <rect x="480" y="90" width="30" height="16" rx="4" fill="rgba(255,123,0,0.25)"/>
-      <text x="495" y="101" text-anchor="middle" fill="#FF7B00" font-size="9" font-family="Nunito">COMP.</text>
-      <rect x="250" y="168" width="100" height="16" rx="4" fill="rgba(155,77,255,0.25)"/>
-      <text x="300" y="179" text-anchor="middle" fill="#9B4DFF" font-size="9" font-family="Nunito">SHEAR in deck</text>
-      <!-- Wind label -->
-      <text x="30" y="130" fill="rgba(184,255,0,0.7)" font-size="10" font-family="Nunito">Wind→</text>
-      <text x="10" y="143" fill="rgba(184,255,0,0.5)" font-size="9" font-family="Nunito">(causes TORSION)</text>
-    </svg>
-    <div class="pill-list" style="justify-content:center;margin-top:12px">
-      <span class="tag" style="background:rgba(0,200,255,0.2);color:var(--electric-blue);border:1px solid var(--electric-blue)">Cables → Tension 🪢</span>
-      <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Towers → Compression 🧱</span>
-      <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Deck → Shear ✂️</span>
-      <span class="tag" style="background:rgba(184,255,0,0.2);color:var(--lime);border:1px solid var(--lime)">Wind → Torsion 🌀</span>
-    </div>
-  </div>
-
-  <!-- Protective Equipment -->
-  <div class="card reveal" style="margin-top:20px;border-color:rgba(255,232,0,0.3);background:linear-gradient(135deg,rgba(255,232,0,0.08),transparent)">
-    <div class="card-title" style="color:var(--yellow)">🪖 Protective Equipment — Science Saves Lives!</div>
-    <p>Engineers use their knowledge of forces to design gear that <strong>absorbs and spreads force</strong> so our bodies aren't damaged.</p>
-    <div class="grid-3" style="margin-top:16px">
-      <div style="text-align:center;background:rgba(255,255,255,0.04);padding:16px;border-radius:14px">
-        <div style="font-size:2.5rem">⛑️</div>
-        <div style="font-weight:800;margin:6px 0">Helmet</div>
-        <div style="font-size:0.82rem;color:var(--muted)">Spreads the impact force across the whole helmet so your skull doesn't take it all</div>
-      </div>
-      <div style="text-align:center;background:rgba(255,255,255,0.04);padding:16px;border-radius:14px">
-        <div style="font-size:2.5rem">🦵</div>
-        <div style="font-weight:800;margin:6px 0">Knee Pads</div>
-        <div style="font-size:0.82rem;color:var(--muted)">Absorb compression force when you fall so your knee cap doesn't crush</div>
-      </div>
-      <div style="text-align:center;background:rgba(255,255,255,0.04);padding:16px;border-radius:14px">
-        <div style="font-size:2.5rem">🚗</div>
-        <div style="font-weight:800;margin:6px 0">Seatbelt</div>
-        <div style="font-size:0.82rem;color:var(--muted)">Applies tension across your chest to stop your body flying forward during a crash</div>
-      </div>
-    </div>
-    <div class="story-box" data-emoji="🏍️" style="margin-top:16px;padding:14px 18px">
-      <div class="story-label">Quick Connect</div>
-      <p style="font-size:0.88rem;">When <span class="highlight">Aeva</span> puts on a helmet to ride her bike, the foam inside uses <span class="orange">compression</span> to absorb the impact, and the straps use <span class="blue">tension</span> to keep it on. Physics is literally protecting her brain! 🧠✨</p>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 3: NATURAL STRUCTURES
-     ====================================================== -->
-<section class="section reveal">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#B8FF00,#00FFD1)">🌿</div>
-    <div>
-      <div class="section-title" style="color:var(--lime)">Natural Structures</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">Nature was an engineer FIRST 🦴🐚</div>
-    </div>
-  </div>
-
-  <div class="story-box" data-emoji="🕷️" style="background:linear-gradient(135deg,rgba(184,255,0,0.12),rgba(0,255,209,0.08));border-color:rgba(184,255,0,0.4)">
-    <div class="story-label">Mind-Blowing Fact</div>
-    <p>A spider web can hold <strong>thousands of times its own weight</strong>! A spider web is actually one of the strongest structures in nature. Engineers study spider silk to design better cables and body armor! 🕸️ Nature's been doing engineering for millions of years before humans caught up.</p>
-  </div>
-
-  <div class="grid-3 reveal" style="margin-top:20px">
-    <div class="card" style="border-color:rgba(184,255,0,0.3);text-align:center">
-      <div style="font-size:3rem">🐚</div>
-      <div class="card-title">Shell</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Curved shape distributes compression forces — that's why it's so hard to crack!</p>
-    </div>
-    <div class="card" style="border-color:rgba(0,255,209,0.3);text-align:center">
-      <div style="font-size:3rem">🦴</div>
-      <div class="card-title">Bones</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Hollow inside = light weight. Outer layer handles compression. Inner structure resists shear.</p>
-    </div>
-    <div class="card" style="border-color:rgba(184,255,0,0.3);text-align:center">
-      <div style="font-size:3rem">🌳</div>
-      <div class="card-title">Tree Trunk</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Flexible enough to survive torsion from wind. Roots handle tension — holding the tree down!</p>
-    </div>
-    <div class="card" style="border-color:rgba(0,255,209,0.3);text-align:center">
-      <div style="font-size:3rem">🕸️</div>
-      <div class="card-title">Spider Web</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Incredible tension in the silk threads. Can stretch 40% before snapping!</p>
-    </div>
-    <div class="card" style="border-color:rgba(184,255,0,0.3);text-align:center">
-      <div style="font-size:3rem">🐝</div>
-      <div class="card-title">Honeycomb</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Hexagonal shape is the strongest pattern per gram — engineers use it in airplane wings!</p>
-    </div>
-    <div class="card" style="border-color:rgba(0,255,209,0.3);text-align:center">
-      <div style="font-size:3rem">🌊</div>
-      <div class="card-title">Cave</div>
-      <p style="font-size:0.85rem;color:var(--muted)">Arch shape converts downward force into outward compression — same trick used in stone bridges!</p>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 4: SIMPLE MACHINES
-     ====================================================== -->
-<section class="section reveal" id="machines">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#FF7B00,#FFE800)">🔧</div>
-    <div>
-      <div class="section-title" style="color:var(--orange)">Simple Machines</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">Working smarter, not harder! 💪🧠</div>
-    </div>
-  </div>
-
-  <div class="story-box" data-emoji="🤯" style="background:linear-gradient(135deg,rgba(255,123,0,0.15),rgba(255,232,0,0.08));border-color:rgba(255,123,0,0.4)">
-    <div class="story-label">The Big Idea</div>
-    <p>Simple machines help you do the same amount of work with <strong>less effort</strong> — either by changing the <span class="yellow">amount of force</span> needed OR the <span class="orange">direction of the force</span>. Think of them as nature's cheat codes for doing hard jobs! 🕹️</p>
-  </div>
-
-  <div class="grid-3 reveal" style="margin-top:20px">
-    <div class="machine-card" style="border-color:rgba(255,45,120,0.4)" onclick="this.style.borderColor='var(--hot-pink)';this.style.background='rgba(255,45,120,0.1)'">
-      <span class="machine-emoji">⚖️</span>
-      <div class="machine-name" style="color:var(--hot-pink)">Lever</div>
-      <div class="machine-desc">A rigid bar that rotates around a fixed point called a <strong>fulcrum</strong>. Move the fulcrum closer to the heavy object → easier to lift!</div>
-      <div class="machine-eg" style="color:var(--hot-pink)">🎯 Seesaw • Crowbar • Bottle opener • Scissors</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="🛝">
-        <span class="highlight">Kosi</span> and <span class="highlight">Viktoria</span> on the seesaw — the fulcrum (middle point) makes it easy to lift each other!
-      </div>
-    </div>
-
-    <div class="machine-card" style="border-color:rgba(0,200,255,0.4)" onclick="this.style.borderColor='var(--electric-blue)';this.style.background='rgba(0,200,255,0.1)'">
-      <span class="machine-emoji">🔘</span>
-      <div class="machine-name" style="color:var(--electric-blue)">Pulley</div>
-      <div class="machine-desc">A wheel with a rope or chain. Lets you lift heavy loads by pulling <strong>down</strong> instead of up — much easier on your muscles!</div>
-      <div class="machine-eg" style="color:var(--electric-blue)">🎯 Flagpole • Crane • Well • Window blinds</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="🏫">
-        When the school flag goes up, a pulley is doing the work — <span class="highlight">Miquea</span> pulls the rope DOWN, the flag goes UP!
-      </div>
-    </div>
-
-    <div class="machine-card" style="border-color:rgba(184,255,0,0.4)" onclick="this.style.borderColor='var(--lime)';this.style.background='rgba(184,255,0,0.05)'">
-      <span class="machine-emoji">📐</span>
-      <div class="machine-name" style="color:var(--lime)">Inclined Plane</div>
-      <div class="machine-desc">A flat surface set at an angle (a ramp). Spreads the force needed over a <strong>longer distance</strong> — so you use less force at a time!</div>
-      <div class="machine-eg" style="color:var(--lime)">🎯 Ramp • Slide • Loading dock • Ski slope</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="♿">
-        A wheelchair ramp is an inclined plane — <span class="highlight">Anna</span> can push her grandmother up a ramp much more easily than lifting her straight up!
-      </div>
-    </div>
-
-    <div class="machine-card" style="border-color:rgba(155,77,255,0.4)" onclick="this.style.borderColor='var(--purple)';this.style.background='rgba(155,77,255,0.1)'">
-      <span class="machine-emoji">🚗</span>
-      <div class="machine-name" style="color:var(--purple)">Wheel & Axle</div>
-      <div class="machine-desc">A large wheel attached to a smaller cylinder (axle). Turning the big wheel needs less force and the axle turns a lot faster!</div>
-      <div class="machine-eg" style="color:var(--purple)">🎯 Car wheels • Doorknob • Steering wheel • Fan</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="🚪">
-        <span class="highlight">Leila</span> turns the big round doorknob (wheel) and the small axle inside the door clicks open with minimal effort!
-      </div>
-    </div>
-
-    <div class="machine-card" style="border-color:rgba(255,232,0,0.4)" onclick="this.style.borderColor='var(--yellow)';this.style.background='rgba(255,232,0,0.05)'">
-      <span class="machine-emoji">🪓</span>
-      <div class="machine-name" style="color:var(--yellow)">Wedge</div>
-      <div class="machine-desc">Two inclined planes joined together to form a sharp edge. Converts forward force into a <strong>splitting or cutting</strong> force sideways!</div>
-      <div class="machine-eg" style="color:var(--yellow)">🎯 Axe • Knife • Chisel • Zipper • Nail</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="🍕">
-        When <span class="highlight">Adiaha</span> cuts her birthday cake, the knife blade (a wedge) pushes the cake apart sideways as it moves downward!
-      </div>
-    </div>
-
-    <div class="machine-card" style="border-color:rgba(0,255,209,0.4)" onclick="this.style.borderColor='var(--teal)';this.style.background='rgba(0,255,209,0.05)'">
-      <span class="machine-emoji">🔩</span>
-      <div class="machine-name" style="color:var(--teal)">Screw</div>
-      <div class="machine-desc">An inclined plane wrapped around a cylinder! The spiral shape converts rotational force into forward motion or a super tight grip.</div>
-      <div class="machine-eg" style="color:var(--teal)">🎯 Jar lid • Bolt • Drill bit • Bottle cap</div>
-      <div class="story-box" style="margin-top:10px;padding:10px 14px;font-size:0.8rem" data-emoji="🫙">
-        <span class="highlight">Zamari</span> turns a jar lid round and round — the screw thread converts that rotating motion into the lid gripping super tight!
-      </div>
-    </div>
-  </div>
-
-  <!-- Matching mini game -->
-  <div class="card reveal" style="margin-top:24px;border-color:rgba(255,123,0,0.3)">
-    <div class="card-title">🎮 Quick Match — Which Machine?</div>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">Match the example to the correct simple machine! Click a machine name then click the example.</p>
-    <div id="matchGame">
-      <div class="match-grid">
-        <div class="match-col" id="matchLeft">
-          <div class="match-item" style="border-color:var(--hot-pink);color:var(--hot-pink)" data-key="A" onclick="matchSelect('left','A',this)">⚖️ Lever</div>
-          <div class="match-item" style="border-color:var(--electric-blue);color:var(--electric-blue)" data-key="B" onclick="matchSelect('left','B',this)">🔘 Pulley</div>
-          <div class="match-item" style="border-color:var(--lime);color:var(--lime)" data-key="C" onclick="matchSelect('left','C',this)">📐 Inclined Plane</div>
-          <div class="match-item" style="border-color:var(--purple);color:var(--purple)" data-key="D" onclick="matchSelect('left','D',this)">🚗 Wheel & Axle</div>
-          <div class="match-item" style="border-color:var(--yellow);color:var(--yellow)" data-key="E" onclick="matchSelect('left','E',this)">🪓 Wedge</div>
-          <div class="match-item" style="border-color:var(--teal);color:var(--teal)" data-key="F" onclick="matchSelect('left','F',this)">🔩 Screw</div>
-        </div>
-        <div class="match-col" id="matchRight">
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="D" onclick="matchSelect('right','D',this)">Car steering wheel 🚗</div>
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="F" onclick="matchSelect('right','F',this)">Bottle cap lid 🫙</div>
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="A" onclick="matchSelect('right','A',this)">Seesaw at the park 🛝</div>
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="C" onclick="matchSelect('right','C',this)">Wheelchair ramp ♿</div>
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="B" onclick="matchSelect('right','B',this)">Flagpole 🚩</div>
-          <div class="match-item" style="border-color:rgba(255,255,255,0.2)" data-answer="E" onclick="matchSelect('right','E',this)">An axe 🪓</div>
-        </div>
-      </div>
-      <div id="matchFeedback" style="margin-top:14px;font-weight:800;font-size:1rem;text-align:center;min-height:30px"></div>
-      <div style="text-align:center;margin-top:12px">
-        <button class="btn btn-secondary" onclick="resetMatch()" style="font-size:0.85rem;padding:8px 20px">🔄 Reset</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 5: ENERGY
-     ====================================================== -->
-<section class="section reveal" id="energy">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#FFE800,#FF7B00)">⚡</div>
-    <div>
-      <div class="section-title" style="color:var(--yellow)">Energy</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">The power behind EVERYTHING ✨🌍</div>
-    </div>
-  </div>
-
-  <div class="story-box" data-emoji="🎵" style="background:linear-gradient(135deg,rgba(255,232,0,0.15),rgba(255,123,0,0.08));border-color:rgba(255,232,0,0.4)">
-    <div class="story-label">The Big Definition</div>
-    <p><strong>Energy</strong> is the ability to <span class="yellow">do work or cause change</span>. Without energy, nothing happens — no movement, no heat, no sound, no life! <span class="highlight">Adiaha</span> uses chemical energy (from food 🍕) to perform on stage. Her voice is sound energy. The spotlight above her is light energy. Energy is EVERYWHERE!</p>
-  </div>
-
-  <!-- Energy Types -->
-  <div class="card reveal" style="margin-top:20px;border-color:rgba(255,232,0,0.3)">
-    <div class="card-title">⚡ 6 Types of Energy — Know Them All!</div>
-    <div class="energy-wheel">
-      <div class="energy-item" style="border-color:rgba(0,200,255,0.5)">
-        <div class="energy-emoji">⚙️</div>
-        <div class="energy-label" style="color:var(--electric-blue)">Mechanical</div>
-        <div class="energy-sub">Movement of objects & machines</div>
-      </div>
-      <div class="energy-item" style="border-color:rgba(255,45,120,0.5)">
-        <div class="energy-emoji">🔥</div>
-        <div class="energy-label" style="color:var(--hot-pink)">Thermal (Heat)</div>
-        <div class="energy-sub">Moving particles → heat</div>
-      </div>
-      <div class="energy-item" style="border-color:rgba(255,232,0,0.5)">
-        <div class="energy-emoji">💡</div>
-        <div class="energy-label" style="color:var(--yellow)">Light</div>
-        <div class="energy-sub">From Sun or light bulbs</div>
-      </div>
-      <div class="energy-item" style="border-color:rgba(155,77,255,0.5)">
-        <div class="energy-emoji">🔊</div>
-        <div class="energy-label" style="color:var(--purple)">Sound</div>
-        <div class="energy-sub">Vibrations through air</div>
-      </div>
-      <div class="energy-item" style="border-color:rgba(184,255,0,0.5)">
-        <div class="energy-emoji">⚡</div>
-        <div class="energy-label" style="color:var(--lime)">Electrical</div>
-        <div class="energy-sub">Powers devices</div>
-      </div>
-      <div class="energy-item" style="border-color:rgba(255,123,0,0.5)">
-        <div class="energy-emoji">🍕</div>
-        <div class="energy-label" style="color:var(--orange)">Chemical</div>
-        <div class="energy-sub">Stored in food & fuel</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Energy Analogies for each type -->
-  <div class="grid-2 reveal" style="margin-top:16px">
-    <div class="card" style="border-color:rgba(0,200,255,0.2)">
-      <div style="font-size:1.8rem">⚙️</div>
-      <div class="card-title" style="color:var(--electric-blue)">Mechanical Energy</div>
-      <p style="font-size:0.88rem"><span class="highlight">Shiloh</span> running at Sports Day → her body is using mechanical energy. A spinning fan, a rolling ball, gears turning in a clock — all mechanical!</p>
-    </div>
-    <div class="card" style="border-color:rgba(255,45,120,0.2)">
-      <div style="font-size:1.8rem">🔥</div>
-      <div class="card-title" style="color:var(--hot-pink)">Thermal Energy</div>
-      <p style="font-size:0.88rem">When <span class="highlight">Miquea</span>'s mom cooks rice on the stove, the fire heats the particles in the pot faster and faster. That's thermal (heat) energy!</p>
-    </div>
-    <div class="card" style="border-color:rgba(255,232,0,0.2)">
-      <div style="font-size:1.8rem">💡</div>
-      <div class="card-title" style="color:var(--yellow)">Light Energy</div>
-      <p style="font-size:0.88rem">The Sun blasts light energy at Earth every second. Without it, plants can't grow, and <span class="highlight">Aeva</span>'s solar-powered calculator won't work!</p>
-    </div>
-    <div class="card" style="border-color:rgba(155,77,255,0.2)">
-      <div style="font-size:1.8rem">🔊</div>
-      <div class="card-title" style="color:var(--purple)">Sound Energy</div>
-      <p style="font-size:0.88rem">When <span class="highlight">Adiaha</span> sings her calypso, her vocal cords vibrate → the air vibrates → the vibrations travel all the way to our ears! That's sound energy!</p>
-    </div>
-    <div class="card" style="border-color:rgba(184,255,0,0.2)">
-      <div style="font-size:1.8rem">⚡</div>
-      <div class="card-title" style="color:var(--lime)">Electrical Energy</div>
-      <p style="font-size:0.88mx">The power that makes <span class="highlight">Vihan</span>'s phone light up, <span class="highlight">Jordan</span>'s fan spin, and the school's lights glow. Electrons moving through wires!</p>
-    </div>
-    <div class="card" style="border-color:rgba(255,123,0,0.2)">
-      <div style="font-size:1.8rem">🍕</div>
-      <div class="card-title" style="color:var(--orange)">Chemical Energy</div>
-      <p style="font-size:0.88rem">Stored in food, petrol, batteries, and fireworks! When <span class="highlight">Zamari</span> eats lunch, chemical energy is released from the food to power his body!</p>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 6: PE & KE
-     ====================================================== -->
-<section class="section reveal" id="pe-ke">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#9B4DFF,#FF7B00)">🎢</div>
-    <div>
-      <div class="section-title">
-        <span style="color:var(--purple)">Potential</span> &
-        <span style="color:var(--orange)">Kinetic</span>
-        <span style="color:var(--text)"> Energy</span>
-      </div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">Stored vs. Moving — the ultimate energy duo! 🎢</div>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px">
-    <div class="card reveal" style="border-color:rgba(155,77,255,0.5);background:linear-gradient(135deg,rgba(155,77,255,0.1),transparent)">
-      <div style="font-size:3rem;margin-bottom:8px">🏋️</div>
-      <div class="card-title" style="color:var(--purple)">Potential Energy (PE)</div>
-      <p><strong>Stored energy</strong> — energy that is <em>waiting</em> to be released. Like potential means "possible" — it has the <em>potential</em> to do work!</p>
-      <div class="pill-list">
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Stretched rubber band</span>
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Water at top of waterfall</span>
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">Roller coaster at the top</span>
-        <span class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple)">A boulder on a hill</span>
-      </div>
-    </div>
-
-    <div class="card reveal" style="border-color:rgba(255,123,0,0.5);background:linear-gradient(135deg,rgba(255,123,0,0.1),transparent)">
-      <div style="font-size:3rem;margin-bottom:8px">🏃</div>
-      <div class="card-title" style="color:var(--orange)">Kinetic Energy (KE)</div>
-      <p><strong>Energy of motion</strong> — any object that's <em>moving</em> has kinetic energy. The <strong>faster</strong> it moves, the <strong>more</strong> kinetic energy it has!</p>
-      <div class="pill-list">
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Rolling ball</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Flying bird</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Roller coaster going down</span>
-        <span class="tag" style="background:rgba(255,123,0,0.2);color:var(--orange);border:1px solid var(--orange)">Splashing water</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ball animation -->
-  <div class="ke-pe-demo reveal">
-    <div class="card-title">🎢 Watch PE ↔ KE Transform!</div>
-    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:12px">Watch the ball on a ramp — see how energy switches between Potential and Kinetic!</p>
-    <canvas id="ballCanvas"></canvas>
-    <div class="pe-ke-labels">
-      <div>
-        <div class="pe-label">🔵 Potential Energy</div>
-        <div style="font-size:0.8rem;color:var(--muted)">HIGH at the top</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:0.85rem;color:var(--muted)" id="energyLabel">⬆️ At the top = all PE</div>
-      </div>
-      <div style="text-align:right">
-        <div class="ke-label">🟠 Kinetic Energy</div>
-        <div style="font-size:0.8rem;color:var(--muted)">HIGH at the bottom</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:12px">
-      <button class="btn btn-primary" onclick="resetBall()" style="font-size:0.85rem;padding:8px 20px">🔄 Drop Again!</button>
-    </div>
-  </div>
-
-  <!-- Roller coaster analogy -->
-  <div class="story-box reveal" data-emoji="🎢" style="margin-top:20px;background:linear-gradient(135deg,rgba(155,77,255,0.15),rgba(255,123,0,0.1));border-color:rgba(155,77,255,0.4)">
-    <div class="story-label">The Roller Coaster Story 🎢</div>
-    <p>Imagine <span class="highlight">Adiaha</span>, <span class="highlight">Kosi</span>, <span class="highlight">Leila</span> and <span class="highlight">Sydney</span> are on a roller coaster:</p>
-    <ul style="margin-top:8px;font-size:0.9rem">
-      <li>🔵 <strong>At the very top</strong> → maximum <span class="purple">POTENTIAL energy</span> (highest height, barely moving)</li>
-      <li>🟠 <strong>Racing down</strong> → PE converts to <span class="orange">KINETIC energy</span> (gaining speed!)</li>
-      <li>🔵 <strong>Going up the next hill</strong> → KE converts back to <span class="purple">PE</span> (slowing down)</li>
-      <li>✨ <strong>The energy keeps switching</strong> back and forth — it's never created or destroyed, just transformed!</li>
-    </ul>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 7: HEAT TRANSFER
-     ====================================================== -->
-<section class="section reveal" id="transfer">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#FF2D78,#FF7B00)">🔥</div>
-    <div>
-      <div class="section-title" style="color:var(--hot-pink)">Heat Transfer</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">3 ways heat gets around 🌡️</div>
-    </div>
-  </div>
-
-  <div class="accordion-item reveal">
-    <div class="accordion-header" onclick="toggleAccordion(this)">
-      <div style="font-size:1.8rem">🍴</div>
-      <div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--orange)">Conduction — Touch to Touch</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Heat moves through direct contact</div>
-      </div>
-      <div class="accordion-arrow">▼</div>
-    </div>
-    <div class="accordion-body">
-      <p style="margin-bottom:10px"><strong>Conduction</strong> happens when heat travels through a material or between two objects that are <strong>touching</strong>. The fast-moving particles bump into slower ones and pass the energy along.</p>
-      <div class="story-box" data-emoji="🥄" style="padding:12px 16px">
-        <div class="story-label">Analogy</div>
-        <p style="font-size:0.88rem"><span class="highlight">Coryn</span> puts a metal spoon in her hot chocolate ☕ — after a few seconds, the handle is warm! Heat moved from the hot soup UP through the spoon to Coryn's fingers. That's conduction!</p>
-        <p style="font-size:0.85rem;margin-top:8px"><strong>Good conductors:</strong> metals (copper, iron, steel) | <strong>Poor conductors (insulators):</strong> wood, plastic, rubber</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-item reveal">
-    <div class="accordion-header" onclick="toggleAccordion(this)">
-      <div style="font-size:1.8rem">🌊</div>
-      <div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--electric-blue)">Convection — Currents of Heat</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Heat moves through liquids and gases</div>
-      </div>
-      <div class="accordion-arrow">▼</div>
-    </div>
-    <div class="accordion-body">
-      <p style="margin-bottom:10px"><strong>Convection</strong> happens in fluids (liquids and gases). Hot particles become less dense and <strong>rise up</strong>, while cooler particles <strong>sink down</strong> — creating a circular current.</p>
-      <div class="story-box" data-emoji="🍲" style="padding:12px 16px">
-        <div class="story-label">Analogy</div>
-        <p style="font-size:0.88rem">When <span class="highlight">Andre</span>'s mom boils soup 🍲 — the hot soup at the bottom rises up, the cooler soup at the top sinks down. This keeps going in a big circle (convection current) until the whole pot is hot!</p>
-        <p style="font-size:0.85rem;margin-top:8px">Same thing happens with air — warm air near a heater RISES, cool air FALLS. That's why the top floor of a building is always warmer! 🏠</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-item reveal">
-    <div class="accordion-header" onclick="toggleAccordion(this)">
-      <div style="font-size:1.8rem">☀️</div>
-      <div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.2rem;color:var(--yellow)">Radiation — Heat Through Space</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Heat travels as waves — no material needed!</div>
-      </div>
-      <div class="accordion-arrow">▼</div>
-    </div>
-    <div class="accordion-body">
-      <p style="margin-bottom:10px"><strong>Radiation</strong> is heat transferred as electromagnetic waves. It's the ONLY type that can travel through the vacuum of space — no material needed!</p>
-      <div class="story-box" data-emoji="🌞" style="padding:12px 16px">
-        <div class="story-label">Analogy</div>
-        <p style="font-size:0.88rem">The Sun is 150 million km away — there's nothing between us and the Sun but empty space. Yet <span class="highlight">Adiaha</span> feels warm at Sports Day! That's radiation — the Sun's heat energy travels as waves through empty space and warms us up. You also feel radiation from a campfire even without touching it! 🔥</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Heat Transfer Comparison -->
-  <div class="card reveal" style="margin-top:20px;border-color:rgba(255,45,120,0.2)">
-    <div class="card-title">⚡ Quick Comparison Chart</div>
-    <table class="fancy-table" style="width:100%;min-width:400px">
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Needs Material?</th>
-          <th>Works In</th>
-          <th>School Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(255,123,0,0.2);color:var(--orange)">Conduction 🍴</span></td>
-          <td>✅ YES — direct touch</td>
-          <td>Solids mainly</td>
-          <td>Metal ruler left in sun → HOT to touch</td>
-        </tr>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(0,200,255,0.2);color:var(--electric-blue)">Convection 🌊</span></td>
-          <td>✅ YES — fluid</td>
-          <td>Liquids & Gases</td>
-          <td>Hot air from AC rises, cools as it spreads</td>
-        </tr>
-        <tr>
-          <td><span class="force-tag" style="background:rgba(255,232,0,0.2);color:var(--yellow)">Radiation ☀️</span></td>
-          <td>❌ NO</td>
-          <td>Anywhere (even space!)</td>
-          <td>Warm sunshine on your face outdoors</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 8: RENEWABLE ENERGY
-     ====================================================== -->
-<section class="section reveal" id="renewable">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#B8FF00,#00FFD1)">🌱</div>
-    <div>
-      <div class="section-title" style="color:var(--lime)">Renewable Energy</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">The planet's clean energy solutions 🌍💚</div>
-    </div>
-  </div>
-
-  <div class="story-box" data-emoji="🌏" style="background:linear-gradient(135deg,rgba(184,255,0,0.12),rgba(0,255,209,0.08));border-color:rgba(184,255,0,0.4)">
-    <div class="story-label">Why Does It Matter?</div>
-    <p>Our planet is getting warmer because humans burn too many <strong>fossil fuels</strong> that release greenhouse gases. <strong>Renewable energy</strong> is our superpower — it can be replaced naturally in a short time and creates WAY less pollution. The future <span class="highlight">Adiaha</span>, <span class="highlight">Kosi</span>, and all your classmates will live in depends on switching to renewables NOW! 🌱</p>
-  </div>
-
-  <!-- Interactive sorter -->
-  <div class="card reveal" style="margin-top:20px;border-color:rgba(184,255,0,0.3)">
-    <div class="card-title">🎮 Renewable or Not? — Click to Reveal!</div>
-    <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">Click each energy source to find out if it's renewable or not!</p>
-    <div id="energyGrid" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">
-    </div>
-    <div id="energyResult" style="margin-top:16px;font-size:0.9rem;min-height:40px;font-weight:700;text-align:center"></div>
-  </div>
-
-  <!-- Renewable deep dive -->
-  <div class="grid-2 reveal" style="margin-top:20px">
-    <div class="card" style="border-color:rgba(255,232,0,0.4)">
-      <div style="font-size:2.5rem">☀️</div>
-      <div class="card-title" style="color:var(--yellow)">Solar Energy</div>
-      <p style="font-size:0.88rem">Energy from the Sun captured by solar panels. St. Kitts gets TONS of sunshine ☀️ — we could power the whole island with solar! <span class="highlight">Adiaha</span>'s future home could run 100% on solar power.</p>
-      <div class="tag" style="background:rgba(255,232,0,0.2);color:var(--yellow);border:1px solid var(--yellow);margin-top:8px">✅ Renewable</div>
-    </div>
-    <div class="card" style="border-color:rgba(0,200,255,0.4)">
-      <div style="font-size:2.5rem">💨</div>
-      <div class="card-title" style="color:var(--electric-blue)">Wind Energy</div>
-      <p style="font-size:0.88rem">Wind spins turbine blades which spin a generator to make electricity. The Caribbean is WINDY — wind farms could supply lots of our energy needs!</p>
-      <div class="tag" style="background:rgba(0,200,255,0.2);color:var(--electric-blue);border:1px solid var(--electric-blue);margin-top:8px">✅ Renewable</div>
-    </div>
-    <div class="card" style="border-color:rgba(155,77,255,0.4)">
-      <div style="font-size:2.5rem">💧</div>
-      <div class="card-title" style="color:var(--purple)">Hydropower</div>
-      <p style="font-size:0.88rem">Flowing water (rivers, dams) spins turbines. The kinetic energy of moving water → electrical energy. Gravity does the work for free!</p>
-      <div class="tag" style="background:rgba(155,77,255,0.2);color:var(--purple);border:1px solid var(--purple);margin-top:8px">✅ Renewable</div>
-    </div>
-    <div class="card" style="border-color:rgba(255,45,120,0.4)">
-      <div style="font-size:2.5rem">🌋</div>
-      <div class="card-title" style="color:var(--hot-pink)">Geothermal</div>
-      <p style="font-size:0.88rem">Energy from the Earth's natural internal heat. Countries near volcanoes (like Iceland!) use steam from underground to generate electricity. The Earth is a giant heat battery!</p>
-      <div class="tag" style="background:rgba(255,45,120,0.2);color:var(--hot-pink);border:1px solid var(--hot-pink);margin-top:8px">✅ Renewable</div>
-    </div>
-    <div class="card" style="border-color:rgba(184,255,0,0.4)">
-      <div style="font-size:2.5rem">🌿</div>
-      <div class="card-title" style="color:var(--lime)">Biomass</div>
-      <p style="font-size:0.88rem">Energy from plants and organic waste — sugarcane bagasse (leftover after making sugar!), wood chips, food waste. St. Kitts used to use sugarcane biomass for energy!</p>
-      <div class="tag" style="background:rgba(184,255,0,0.2);color:var(--lime);border:1px solid var(--lime);margin-top:8px">✅ Renewable</div>
-    </div>
-    <div class="card" style="border-color:rgba(255,68,68,0.4);background:rgba(255,68,68,0.05)">
-      <div style="font-size:2.5rem">⛽</div>
-      <div class="card-title" style="color:#FF6666">Fossil Fuels</div>
-      <p style="font-size:0.88rem">Coal, oil, natural gas — take <strong>millions of years</strong> to form. When we burn them, CO₂ goes into the atmosphere and warms the planet. We are running out! 😟</p>
-      <div class="tag" style="background:rgba(255,68,68,0.2);color:#FF6666;border:1px solid #FF6666;margin-top:8px">❌ NOT Renewable</div>
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     SECTION 9: CONSERVE & PRESERVE
-     ====================================================== -->
-<section class="section reveal" id="conserve">
-  <div class="section-header">
-    <div class="section-icon" style="background:linear-gradient(135deg,#00FFD1,#B8FF00)">♻️</div>
-    <div>
-      <div class="section-title" style="color:var(--teal)">Conserve & Preserve</div>
-      <div style="color:var(--muted);font-size:0.95rem;font-weight:700;">Protecting our planet for future Adiahas! 🌿</div>
-    </div>
-  </div>
-
-  <div class="grid-2" style="margin-bottom:20px">
-    <div class="card reveal" style="border-color:rgba(0,255,209,0.4);background:linear-gradient(135deg,rgba(0,255,209,0.1),transparent)">
-      <div style="font-size:3rem">💡</div>
-      <div class="card-title" style="color:var(--teal)">CONSERVE = Use Wisely</div>
-      <p>Using resources carefully so they last longer. Not wasting what we have.</p>
-      <ul style="margin-top:10px;font-size:0.88rem">
-        <li>🔆 Turn off lights when leaving a room</li>
-        <li>💧 Turn off the tap while brushing teeth</li>
-        <li>♻️ Reuse containers instead of buying new</li>
-        <li>🚶 Walk instead of drive for short trips</li>
-        <li>📱 Unplug chargers when not in use</li>
-      </ul>
-      <div class="story-box" style="margin-top:12px;padding:12px 16px;font-size:0.85rem" data-emoji="💡">
-        <span class="highlight">Adiaha</span> reminds her family to turn off lights at home. That's conservation! Small acts × millions of people = HUGE impact 🌍
-      </div>
-    </div>
-
-    <div class="card reveal" style="border-color:rgba(184,255,0,0.4);background:linear-gradient(135deg,rgba(184,255,0,0.08),transparent)">
-      <div style="font-size:3rem">🛡️</div>
-      <div class="card-title" style="color:var(--lime)">PRESERVE = Protect from Harm</div>
-      <p>Keeping natural resources and environments safe from destruction.</p>
-      <ul style="margin-top:10px;font-size:0.88rem">
-        <li>🌳 National Parks and protected forests</li>
-        <li>🐠 Marine reserves for coral reefs</li>
-        <li>🏔️ No-build zones in sensitive areas</li>
-        <li>🌿 Laws against cutting down rainforests</li>
-        <li>🐢 Wildlife protection programs</li>
-      </ul>
-      <div class="story-box" style="margin-top:12px;padding:12px 16px;font-size:0.85rem" data-emoji="🌊">
-        St. Kitts's coral reefs are PRESERVED by marine protected areas. Without them, <span class="highlight">Leila</span> and future generations won't see them! 🐠
-      </div>
-    </div>
-  </div>
-
-  <!-- 3 Rs -->
-  <div class="card reveal" style="border-color:rgba(0,255,209,0.3);text-align:center">
-    <div class="card-title">♻️ The 3 Rs — In Order of Importance!</div>
-    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-      <div class="conserve-card" style="flex:1;min-width:140px">
-        <div style="font-size:3rem">🚫</div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--hot-pink);margin:8px 0">REDUCE</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Use <strong>less</strong> in the first place. Best option! Don't buy things you don't need.</div>
-        <div style="font-size:0.78rem;margin-top:8px;color:var(--teal)">E.g.: Buy one water bottle and refill it, not 100 plastic ones</div>
-      </div>
-      <div class="conserve-card" style="flex:1;min-width:140px">
-        <div style="font-size:3rem">🔄</div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--yellow);margin:8px 0">REUSE</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Use items <strong>again</strong> instead of throwing away. Second best!</div>
-        <div style="font-size:0.78rem;margin-top:8px;color:var(--teal)">E.g.: Use both sides of paper, donate old clothes, reuse containers</div>
-      </div>
-      <div class="conserve-card" style="flex:1;min-width:140px">
-        <div style="font-size:3rem">♻️</div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--lime);margin:8px 0">RECYCLE</div>
-        <div style="font-size:0.85rem;color:var(--muted)">Turn waste into <strong>new materials</strong>. Better than landfill but uses energy.</div>
-        <div style="font-size:0.78rem;margin-top:8px;color:var(--teal)">E.g.: Aluminum cans, glass bottles, cardboard, some plastics</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Plant Trees -->
-  <div class="story-box reveal" data-emoji="🌳" style="margin-top:20px;background:linear-gradient(135deg,rgba(184,255,0,0.1),rgba(0,255,209,0.08));border-color:rgba(184,255,0,0.4)">
-    <div class="story-label">Plant Trees = Save the Planet</div>
-    <p>Trees are nature's air filters! They absorb CO₂ (the main greenhouse gas) and release oxygen. One tree can absorb about <strong>22 kg of CO₂ per year</strong>. If <span class="highlight">every student in Adiaha's class planted just one tree per year</span>, that's a lot of climate action from one classroom! 🌳🌍</p>
-    <p style="margin-top:8px">Also: save water 💧 and electricity ⚡ every single day — these all connect back to reducing fossil fuel use and protecting our environment.</p>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ======================================================
-     QUIZ SECTION
-     ====================================================== -->
-<section id="quiz-section">
-  <div class="quiz-container">
-    <div style="text-align:center;padding-bottom:30px">
-      <div style="font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,3.5rem);background:linear-gradient(135deg,var(--yellow),var(--hot-pink),var(--electric-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">🧪 Science Quiz Time!</div>
-      <div style="color:var(--muted);font-weight:700;margin-top:6px">30 Questions — Application, reasoning & real thinking! 🧠💪</div>
-    </div>
-
-    <div class="quiz-progress" id="quizProgress"></div>
-
-    <div class="quiz-card" id="quizCard">
-      <div id="quizContent"></div>
-    </div>
-
-    <div class="quiz-nav" id="quizNav">
-      <div class="quiz-score-badge" id="scoreBadge">Score: 0 / 0</div>
-      <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" style="display:none">Next Question →</button>
-    </div>
-  </div>
-</section>
-
-<!-- FAB TOC -->
-<button class="toc-fab" onclick="toggleToc()" title="Menu">📚</button>
-<div class="toc-menu" id="tocMenu">
-  <a class="toc-link" href="#top">🏠 Top</a>
-  <a class="toc-link" href="#forces">💥 Forces & Motion</a>
-  <a class="toc-link" href="#force-types">🏗️ Structure Forces</a>
-  <a class="toc-link" href="#machines">🔧 Simple Machines</a>
-  <a class="toc-link" href="#energy">⚡ Energy Types</a>
-  <a class="toc-link" href="#pe-ke">🎢 PE & KE</a>
-  <a class="toc-link" href="#transfer">🔥 Heat Transfer</a>
-  <a class="toc-link" href="#renewable">🌱 Renewable Energy</a>
-  <a class="toc-link" href="#conserve">♻️ Conserve & Preserve</a>
-  <a class="toc-link" href="#quiz-section">🧪 Quiz!</a>
 </div>
 
-<footer style="text-align:center;padding:40px 20px;color:var(--muted);font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.06)">
-  <div style="font-family:'Fredoka One',cursive;font-size:1.5rem;margin-bottom:8px;background:linear-gradient(135deg,var(--hot-pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Made with ❤️ for Adiaha</div>
-  <div>Grade 5 Science • Exam: June 17, 2026 • You've got this! 🌟</div>
-  <div style="margin-top:6px">Force Factor & Conserve and Preserve • Study hard, shine bright ✨</div>
-</footer>
+<div class="container">
+  <div class="hero">
+    <div class="hero-label">Presentation Research Guide</div>
+    <h1>Technology has made us <em>isolated</em></h1>
+    <div class="hero-sub">Read the examples first. Then answer each question in your own words. Your answers save automatically as you type.</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab" onclick="switchTab('examples', this)">Examples</button>
+    <button class="tab active" onclick="switchTab('research', this)">My Answers</button>
+    <button class="tab" onclick="switchTab('strategy', this)">Memory Strategy</button>
+  </div>
+
+  <!-- EXAMPLES PANE -->
+  <div id="pane-examples" class="pane">
+
+    <div class="ex-section">
+      <div class="ex-section-title"><span class="ex-word">Hook</span> &mdash; Grab their attention</div>
+      <div class="ex-section-desc">The hook is the very first thing you say. It should make the audience stop, think, and lean forward. A great hook asks a question, paints a picture, or says something surprising. You have about 10 seconds to win them over.</div>
+
+      <div class="ex-card">
+        <div class="ex-label">The question hook</div>
+        <div class="ex-text">"Raise your hand if you've ever been sitting right next to someone &mdash; maybe a friend, a parent, even a brother or sister &mdash; and they didn't even notice you were there. Because they were on their phone."</div>
+        <div class="ex-why">Why it works: hands go up, people laugh or feel seen, and you've already made your point before you've argued anything. The audience proves it for you.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The scene-setting hook</div>
+        <div class="ex-text">"Picture a family having dinner together. The food is hot. The table is set. But nobody is talking. Mum is scrolling. Dad is checking emails. The kids are watching videos. They are in the same room &mdash; but they are completely alone."</div>
+        <div class="ex-why">Why it works: the audience can see it clearly in their minds. It's specific. It might even be their own family.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The personal hook (use your own story)</div>
+        <div class="ex-text">"I wrote a song called Screen Time. Not because someone told me to. But because I looked around and realised that the screens in our lives were slowly replacing the people in our lives. And I was tired of it."</div>
+        <div class="ex-why">Why it works: it's real, it's you, and it immediately tells the audience why they should listen to you specifically.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The surprising fact hook</div>
+        <div class="ex-text">"Did you know that the average person checks their phone over 150 times a day? That's once every ten minutes &mdash; including when they're with the people they love most."</div>
+        <div class="ex-why">Why it works: numbers shock people. It makes them think about their own habits before you've even made your argument.</div>
+      </div>
+    </div>
+
+    <hr class="ex-divider" />
+
+    <div class="ex-section">
+      <div class="ex-section-title"><span class="ex-word">Define</span> &mdash; Explain what isolation really means</div>
+      <div class="ex-section-desc">Most people think isolation means being completely alone with no one around. Your job is to redefine it. Isolation can happen even in a full room. This is the idea that makes your entire argument powerful &mdash; and different from what anyone expects.</div>
+
+      <div class="ex-card">
+        <div class="ex-label">The redefinition</div>
+        <div class="ex-text">"When most people hear the word <strong>isolated</strong>, they picture someone sitting alone in a dark room. But I want to talk about a different kind of isolation. The kind where you are surrounded by people &mdash; and still feel completely invisible."</div>
+        <div class="ex-why">Why it works: it surprises them. It opens up a bigger, more interesting argument than they expected.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The presence vs. connection contrast</div>
+        <div class="ex-text">"Being present and being <strong>connected</strong> are two very different things. Your body can be in the room. But if your mind is on a screen, you are not connected to the people right in front of you. That gap between presence and connection &mdash; that is isolation."</div>
+        <div class="ex-why">Why it works: the contrast is clean and memorable. "Presence vs. connection" is a phrase they'll carry with them after the presentation.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The simple, direct definition</div>
+        <div class="ex-text">"Isolation means feeling cut off &mdash; cut off from real conversations, cut off from the people who care about you, cut off from the world happening right outside your door. Technology hasn't made us less connected online. But it has made us more cut off from the people standing right beside us."</div>
+        <div class="ex-why">Why it works: short, clear, and it lands the core argument before the evidence even begins.</div>
+      </div>
+    </div>
+
+    <hr class="ex-divider" />
+
+    <div class="ex-section">
+      <div class="ex-section-title"><span class="ex-word">Evidence</span> &mdash; Build your case</div>
+      <div class="ex-section-desc">Evidence is where you prove your point. Use a mix: personal stories, observations, facts, and examples from your own life and song. You don't need 20 pieces of evidence. Three or four strong ones beat ten weak ones every time.</div>
+
+      <div class="ex-card">
+        <div class="ex-label">Family evidence &mdash; from your song</div>
+        <div class="ex-text">"In my song Screen Time, I sing about the simple things children are missing &mdash; playing outside, bedtime stories, running around with friends. These aren't big things. But they are the things that build a family. And they're disappearing &mdash; one scroll at a time."</div>
+        <div class="ex-why">Why it works: it connects directly to something you've already done, making you credible and passionate at the same time.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">Friendship evidence</div>
+        <div class="ex-text">"Think about how friendships have changed. We send heart emojis instead of giving real hugs. We post birthday wishes instead of showing up. We have hundreds of followers &mdash; and sometimes, not one real friend to call when something goes wrong."</div>
+        <div class="ex-why">Why it works: almost everyone in the audience has felt this, even if they've never said it out loud.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">Caribbean community evidence &mdash; your local angle</div>
+        <div class="ex-text">"Here in St. Kitts, we grew up in a culture where your neighbour was your family. Where children played in the streets until the sun went down. Where people sat on their galleries and talked. That culture is being replaced &mdash; by Wi-Fi, by data plans, by screens that keep us indoors and keep us quiet."</div>
+        <div class="ex-why">Why it works: it's local, it's emotional, and nobody else arguing this topic has this exact angle. This is yours.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">Mental health evidence</div>
+        <div class="ex-text">"Studies have found that teenagers who spend more time on social media are more likely to feel lonely, anxious, and left out &mdash; even though they're technically more 'connected' than any generation before them. More followers. More likes. More loneliness."</div>
+        <div class="ex-why">Why it works: the final three-word rhythm &mdash; "more followers, more likes, more loneliness" &mdash; is striking and easy to remember.</div>
+      </div>
+    </div>
+
+    <hr class="ex-divider" />
+
+    <div class="ex-section">
+      <div class="ex-section-title"><span class="ex-word">Rebut</span> &mdash; Tackle the other side</div>
+      <div class="ex-section-desc">A strong presenter doesn't ignore people who disagree &mdash; they address them and then push back. This shows maturity and makes your argument harder to knock down. The pattern is simple: "I hear you. You're right that... But here's why that's still not enough."</div>
+
+      <div class="ex-card">
+        <div class="ex-label">The "yes, but" rebut</div>
+        <div class="ex-text">"Now, I know what some of you might be thinking. Technology connects us too &mdash; we can video call relatives in another country, we can message friends in seconds. And you're right. Technology <strong>can</strong> connect us. But can a video call replace sitting in the same room as someone you love? Can a text message replace a real conversation? I don't think so."</div>
+        <div class="ex-why">Why it works: you give the other side credit, which makes you seem fair &mdash; and then you take it back with a question they can't argue with.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The quality vs. quantity rebut</div>
+        <div class="ex-text">"Yes, technology gives us more connections than ever before. But connection isn't just about quantity &mdash; how many people you know. It's about quality &mdash; how deeply you know them. And a screen will never give you the depth of a real, face-to-face relationship."</div>
+        <div class="ex-why">Why it works: the quantity/quality contrast is clean, memorable, and very hard to argue against.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The wrong-tool rebut</div>
+        <div class="ex-text">"Technology is wonderful for staying in touch across distances. But most of us aren't using it to call our grandparents overseas. We're using it to scroll past people we already see every day. We're using a long-distance tool &mdash; on people who are right beside us."</div>
+        <div class="ex-why">Why it works: it's a little funny, a little painful, and completely true. That combination is powerful.</div>
+      </div>
+    </div>
+
+    <hr class="ex-divider" />
+
+    <div class="ex-section">
+      <div class="ex-section-title"><span class="ex-word">Close</span> &mdash; Leave them with something</div>
+      <div class="ex-section-desc">The close is what they remember when they walk out of the room. It should feel like a conclusion but also like a challenge or an invitation. End with energy &mdash; not a trail-off. You want them to feel something, and you want them to want to do something.</div>
+
+      <div class="ex-card">
+        <div class="ex-label">The challenge close</div>
+        <div class="ex-text">"I have one challenge for you. Just one. Today &mdash; not next week, not someday &mdash; today, put down your phone for one hour. Sit with your family. Go outside. Talk to someone face to face. And see what happens. I promise you won't regret it."</div>
+        <div class="ex-why">Why it works: it's specific, it's doable, and it gives the audience something concrete to actually do. Words become action.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The callback close &mdash; ties back to your hook</div>
+        <div class="ex-text">"Remember that family I described at the beginning &mdash; sitting at a table, together but alone? I don't want that to be your family. I don't want that to be mine. We have a choice. And the choice starts with simply looking up."</div>
+        <div class="ex-why">Why it works: callbacks feel satisfying. It shows you planned the whole presentation. And "simply looking up" is quiet, poetic, and lands beautifully.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The personal close &mdash; your crown, your proof</div>
+        <div class="ex-text">"I am Adiaha. I am the Junior Calypso Monarch. And I didn't win that crown by scrolling through a screen. I won it by picking up a pen, writing something I believed in, and standing on a stage and saying it out loud. That is what happens when we put down the phones and pick up our lives. Thank you."</div>
+        <div class="ex-why">Why it works: it's powerful, personal, and it makes the crown part of the argument. Not just a title &mdash; living proof of what you're saying.</div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-label">The quiet, emotional close</div>
+        <div class="ex-text">"The people who love you most are not on the other side of a screen. They are right here &mdash; in your house, in your classroom, on your street. Don't make them wait for you to notice them. Look up. Be here. While you still can."</div>
+        <div class="ex-why">Why it works: "while you still can" adds unexpected emotional weight. It's the kind of close that makes a room go quiet.</div>
+      </div>
+    </div>
+
+  </div><!-- end examples -->
+
+  <!-- RESEARCH PANE -->
+  <div id="pane-research" class="pane active">
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-fill"></div></div>
+    <div class="progress-label" id="prog-label">0 of 12 questions answered</div>
+
+    <div class="section-label">Part 1 &mdash; The Hook &middot; Open with this</div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Opening question</span><span class="q-badge">Speak from experience</span></div>
+      <div class="q-text">When you look around at your family or friends, how often do you see them on their phones or tablets instead of talking to each other?</div>
+      <div class="q-hint">Think about meal times, car rides, or family gatherings. Use a personal example &mdash; maybe from your own home.</div>
+      <textarea class="q-answer" id="q1" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Define isolation</span><span class="q-badge">Set the argument up</span></div>
+      <div class="q-text">What does "being isolated" mean to you? Can someone be surrounded by people and still feel lonely?</div>
+      <div class="q-hint">Think about sitting next to someone who is on their phone the whole time. Are you really "together"?</div>
+      <textarea class="q-answer" id="q2" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="section-label">Part 2 &mdash; The Evidence &middot; Build your case</div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Family</span><span class="q-badge">Link to your song</span></div>
+      <div class="q-text">Think about your own song "Screen Time." What specific things do children miss out on when parents are always on their phones?</div>
+      <div class="q-hint">Playing games, bedtime stories, outdoor adventures, silly conversations &mdash; connect your song to real losses children experience.</div>
+      <textarea class="q-answer" id="q3" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Friendships</span><span class="q-badge">Social impact</span></div>
+      <div class="q-text">How has technology changed how children make and keep friends? Is texting or chatting online the same as actually playing together?</div>
+      <div class="q-hint">Think about the difference between sending a heart emoji and giving a real hug. What do we lose in digital friendships?</div>
+      <textarea class="q-answer" id="q4" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Mental Health</span><span class="q-badge">Health &amp; wellbeing</span></div>
+      <div class="q-text">What happens to how we feel when we spend too much time on screens? Name two or three feelings that come from too much screen time or social media.</div>
+      <div class="q-hint">Loneliness, anxiety, feeling left out, difficulty sleeping, comparing yourself to others &mdash; pick a few you can explain in your own words.</div>
+      <textarea class="q-answer" id="q5" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Community</span><span class="q-badge">Caribbean context</span></div>
+      <div class="q-text">In the Caribbean, we have a strong culture of community &mdash; neighbours helping each other, street games, village gatherings. Is technology replacing these traditions in St. Kitts?</div>
+      <div class="q-hint">This is your local angle &mdash; very powerful! Talk about what community used to look like and how screens have quietly changed it.</div>
+      <textarea class="q-answer" id="q6" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Statistics</span><span class="q-badge">Research to find</span></div>
+      <div class="q-text">Can you find one fact or statistic that shows how technology is increasing loneliness or reducing face-to-face time? Write the fact and where it comes from.</div>
+      <div class="q-hint">Search "screen time loneliness statistics" or "children social media mental health research." One strong fact is all you need.</div>
+      <textarea class="q-answer" id="q7" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Evidence &mdash; Personal Story</span><span class="q-badge">Make it real</span></div>
+      <div class="q-text">Share a short personal story &mdash; your own experience or something you witnessed &mdash; where a screen got in the way of a real human moment.</div>
+      <div class="q-hint">A dinner where everyone was on their phones. A friend who missed something because they were scrolling. A time you felt ignored for a device.</div>
+      <textarea class="q-answer" id="q8" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="section-label">Part 3 &mdash; The Rebut &middot; Address the other side</div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Counterargument</span><span class="q-badge">Acknowledge, then push back</span></div>
+      <div class="q-text">Some people say technology connects us &mdash; video calls, group chats, online communities. Why is that argument not enough to stop isolation from happening?</div>
+      <div class="q-hint">Acknowledge that technology has good uses, but argue that digital connection is different from real human presence. It's about quality, not just quantity.</div>
+      <textarea class="q-answer" id="q9" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="section-label">Part 4 &mdash; The Close &middot; Leave them with something</div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Solution</span><span class="q-badge">What can we do?</span></div>
+      <div class="q-text">If technology is making us isolated, what are three things people &mdash; especially families &mdash; can do right now to reconnect?</div>
+      <div class="q-hint">Draw from your Screen Time song &mdash; outdoor play, family time, setting limits. Make each one specific and easy to picture.</div>
+      <textarea class="q-answer" id="q10" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Closing statement</span><span class="q-badge">Memorable ending</span></div>
+      <div class="q-text">How will you end your presentation in a way that stays in the audience's mind? Write your closing two or three sentences.</div>
+      <div class="q-hint">A challenge, a callback to your hook, or a powerful image. Make it emotional and strong. End with confidence.</div>
+      <textarea class="q-answer" id="q11" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-meta"><span class="q-type">Credibility</span><span class="q-badge">Know your strength</span></div>
+      <div class="q-text">As the Junior Calypso Monarch who wrote and sang "Screen Time," what makes YOU a credible voice on this topic? Why should the audience believe you?</div>
+      <div class="q-hint">Your crown, your song, your school visits &mdash; you have lived this message. Remind them you are not just talking about it, you are doing something about it.</div>
+      <textarea class="q-answer" id="q12" placeholder="Write your answer here&hellip;" oninput="scheduleAutosave(); updateProgress()"></textarea>
+    </div>
+
+  </div><!-- end research -->
+
+  <!-- STRATEGY PANE -->
+  <div id="pane-strategy" class="pane">
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">The goal</span></h3>
+      <p>The goal is NOT to memorise word-for-word. That makes you sound robotic and panics you if you forget one sentence. The goal is to memorise the <strong>structure</strong> and a few key phrases, then speak naturally from what you know.</p>
+    </div>
+
+    <div class="section-label">The 5-Part Skeleton</div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Step 1</span>&nbsp; Learn these five words first</h3>
+      <p>Your whole presentation lives inside five words. Write them on your hand if you need to:</p>
+      <ol>
+        <li><strong>Hook</strong> &mdash; grab their attention with a question or scene</li>
+        <li><strong>Define</strong> &mdash; explain what isolation really means (presence &ne; connection)</li>
+        <li><strong>Evidence</strong> &mdash; family, friends, community, facts, your personal story</li>
+        <li><strong>Rebut</strong> &mdash; agree technology connects, then explain why it&rsquo;s still not enough</li>
+        <li><strong>Close</strong> &mdash; a challenge or call to action that sticks</li>
+      </ol>
+    </div>
+
+    <div class="section-label">Memory Techniques</div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Step 2</span>&nbsp; The hand technique</h3>
+      <p>Hold up your hand. Each finger = one section of your talk. When you practise, physically touch each finger as you move through the sections. If you get nervous on stage, glance at your hand &mdash; it tells you exactly where you are and what comes next. Your body becomes your notes.</p>
+    </div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Step 3</span>&nbsp; One vivid image per section</h3>
+      <p>Pick one picture in your mind for each section. Your brain remembers pictures better than words.</p>
+      <ul>
+        <li><strong>Hook:</strong> a family at dinner, food getting cold, everyone on their phones</li>
+        <li><strong>Define:</strong> a person in a crowded room, completely invisible and alone</li>
+        <li><strong>Evidence:</strong> your Screen Time song playing &mdash; let the lyrics remind you of the examples</li>
+        <li><strong>Rebut:</strong> a video call vs. a real hug &mdash; feel the difference</li>
+        <li><strong>Close:</strong> someone putting down their phone and picking up a friend&rsquo;s hand</li>
+      </ul>
+    </div>
+
+    <div class="section-label">Practice Plan</div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Step 4</span>&nbsp; Practise in three stages</h3>
+      <ol>
+        <li><strong>Day 1&ndash;2 (Read aloud):</strong> Read your written answers out loud three times each day. Do not try to memorise yet. Just get comfortable with how the ideas sound.</li>
+        <li><strong>Day 3&ndash;4 (Cover and try):</strong> Close the document. Try to say each section using only the five-word skeleton. It will be messy. That is perfectly fine &mdash; this is how memory forms.</li>
+        <li><strong>Day 5+ (Full run-throughs):</strong> Deliver the complete presentation to a mirror, to dad, or record yourself. Time yourself &mdash; aim for 4 to 6 minutes. Repeat until it feels natural, not perfect.</li>
+      </ol>
+    </div>
+
+    <div class="section-label">On the Day</div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Step 5</span>&nbsp; Handle nerves like a Calypso Queen</h3>
+      <ul>
+        <li>Take one slow, deep breath before you start. It signals your brain to calm down.</li>
+        <li>Speak slower than you think you need to &mdash; nerves make us rush.</li>
+        <li>If you forget something, pause, smile, and move to the next section. The audience will not know.</li>
+        <li>You have already performed on stage and won a crown. This is just a conversation with people who already believe in you.</li>
+      </ul>
+    </div>
+
+    <div class="strategy-card">
+      <h3><span class="phase-pill">Your personal edge</span></h3>
+      <p>Most people arguing this topic are just sharing facts. You have something they do not &mdash; you wrote a song about it, you performed it on a stage, you won with it, and you have visited schools to spread the message. Always remind your audience:</p>
+      <p style="margin-top:10px;padding:12px 16px;border-left:3px solid var(--gold);color:var(--text);font-style:italic;">&ldquo;I don&rsquo;t just believe this &mdash; I have been living this message.&rdquo;</p>
+    </div>
+
+  </div><!-- end strategy -->
+
+</div><!-- end container -->
+
+<!-- SETTINGS PANEL -->
+<div class="settings-overlay" id="overlay" onclick="closeSettings()"></div>
+<div class="settings-panel" id="settings-panel">
+  <div class="settings-title">Settings <button class="settings-close" onclick="closeSettings()">&#10005;</button></div>
+  <div class="field-group">
+    <label class="field-label">JSONBin Master API Key</label>
+    <input type="password" class="field-input" id="api-key" placeholder="$2a$10$&hellip;" />
+    <div class="field-hint">Your JSONBin master key. Stored in your browser only.</div>
+  </div>
+  <hr class="settings-divider" />
+  <button class="btn-settings-action primary" onclick="initBin()">Load my saved answers</button>
+  <button class="btn-settings-action" onclick="saveConfig()">Save settings locally</button>
+  <div id="settings-status"></div>
+</div>
+
+<div id="toast"></div>
 
 <script>
-// ===== STARS =====
-const starsEl = document.getElementById('stars');
-for(let i=0;i<80;i++){
-  const s = document.createElement('div');
-  s.className='star';
-  s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;--dur:${Math.random()*3+1}s;animation-delay:${Math.random()*3}s`;
-  starsEl.appendChild(s);
+const JSONBIN = 'https://api.jsonbin.io/v3';
+const QS = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12'];
+let autosaveTimer = null;
+let isSaving = false;
+
+function saveConfig() {
+  localStorage.setItem('adiaha_key', document.getElementById('api-key').value);
+  toast('Settings saved');
+}
+function loadConfig() {
+  const k = localStorage.getItem('adiaha_key');
+  if (k) document.getElementById('api-key').value = k;
+}
+function getKey() { return document.getElementById('api-key').value.trim(); }
+function getBin() { return '6a04ff03250b1311c347f13f'; }
+
+function openSettings() {
+  document.getElementById('settings-panel').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+function closeSettings() {
+  document.getElementById('settings-panel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
 }
 
-// ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});
-},{threshold:0.1});
-revealEls.forEach(el=>observer.observe(el));
-
-// ===== PAGE PROGRESS =====
-window.addEventListener('scroll',()=>{
-  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-  document.getElementById('page-progress').style.width = pct + '%';
-});
-
-// ===== TOC =====
-function toggleToc(){
-  document.getElementById('tocMenu').classList.toggle('open');
+function switchTab(name, btn) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+  btn.classList.add('active');
 }
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.toc-fab')&&!e.target.closest('.toc-menu')){
-    document.getElementById('tocMenu').classList.remove('open');
+
+function updateProgress() {
+  const filled = QS.filter(q => (document.getElementById(q)||{}).value?.trim().length > 0).length;
+  document.getElementById('prog-fill').style.width = Math.round((filled/QS.length)*100) + '%';
+  document.getElementById('prog-label').textContent = filled + ' of ' + QS.length + ' questions answered';
+}
+
+function toast(msg, dur=2500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => t.style.display = 'none', dur);
+}
+function setStatus(msg, cls='') {
+  const el = document.getElementById('settings-status');
+  el.textContent = msg; el.className = cls;
+}
+function setIndicator(msg) {
+  document.getElementById('autosave-indicator').textContent = msg;
+}
+
+function scheduleAutosave() {
+  clearTimeout(autosaveTimer);
+  if (getKey() && getBin()) setIndicator('typing\u2026');
+  autosaveTimer = setTimeout(doAutosave, 2000);
+}
+
+async function doAutosave() {
+  if (!getKey() || !getBin() || isSaving) return;
+  isSaving = true;
+  setIndicator('saving\u2026');
+  const data = {};
+  QS.forEach(q => { const el = document.getElementById(q); data[q] = el ? el.value : ''; });
+  try {
+    const r = await fetch(JSONBIN + '/b/' + getBin(), {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': getKey() },
+      body: JSON.stringify(data)
+    });
+    setIndicator(r.ok ? 'saved \u2713' : 'error');
+  } catch(e) {
+    setIndicator('offline');
   }
-});
-
-// ===== ACCORDION =====
-function toggleAccordion(header){
-  const body = header.nextElementSibling;
-  const isOpen = body.classList.contains('open');
-  document.querySelectorAll('.accordion-body.open').forEach(b=>b.classList.remove('open'));
-  document.querySelectorAll('.accordion-header.open').forEach(h=>h.classList.remove('open'));
-  if(!isOpen){ body.classList.add('open'); header.classList.add('open'); }
+  setTimeout(() => setIndicator(''), 3000);
+  isSaving = false;
 }
 
-// ===== FORCE DEMO =====
-const forceScenes = {
-  push: {
-    html: `<div style="display:flex;align-items:center;gap:20px;width:100%;padding:20px">
-      <div style="font-size:2.5rem;animation:float 1s ease-in-out infinite">🙌</div>
-      <div style="flex:1;height:50px;background:rgba(255,45,120,0.3);border-radius:12px;border:2px solid var(--hot-pink);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;animation:pushCart 2s ease-in-out infinite">🛒 Shopping Cart</div>
-      <div style="color:var(--hot-pink);font-size:1.2rem;animation:pushArrow 2s ease-in-out infinite">→→→</div>
-    </div>
-    <style>
-      @keyframes pushCart{0%,100%{transform:translateX(0)}50%{transform:translateX(20px)}}
-      @keyframes pushArrow{0%,100%{opacity:0.3}50%{opacity:1}}
-    </style>`,
-    text: '💥 <strong>PUSH</strong> — Your hands apply a force on the cart, moving it <strong>away</strong> from you. The force starts the motion!'
-  },
-  pull: {
-    html: `<div style="display:flex;align-items:center;gap:20px;width:100%;padding:20px;flex-direction:row-reverse">
-      <div style="font-size:2.5rem;animation:float 1s ease-in-out infinite">🤲</div>
-      <div style="flex:1;height:50px;background:rgba(0,200,255,0.3);border-radius:12px;border:2px solid var(--electric-blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.9rem;animation:pullBox 2s ease-in-out infinite">🗄️ Drawer</div>
-      <div style="color:var(--electric-blue);font-size:1.2rem;animation:pushArrow 2s ease-in-out infinite">←←←</div>
-    </div>
-    <style>@keyframes pullBox{0%,100%{transform:translateX(0)}50%{transform:translateX(-20px)}}</style>`,
-    text: '🤲 <strong>PULL</strong> — Your hand applies a force bringing the drawer <strong>toward</strong> you. Same idea, opposite direction!'
-  },
-  gravity: {
-    html: `<div style="width:100%;height:140px;position:relative;overflow:hidden">
-      <div id="fallingBall" style="position:absolute;top:10px;left:50%;transform:translateX(-50%);font-size:2.5rem;animation:fall 2s ease-in infinite">🏀</div>
-      <div style="position:absolute;bottom:0;left:0;right:0;height:20px;background:rgba(255,255,255,0.1);border-radius:4px;border-top:2px solid rgba(255,255,255,0.2)"></div>
-    </div>
-    <style>@keyframes fall{0%{top:10px;opacity:1}80%{top:105px;opacity:1}90%{top:100px}100%{top:10px;opacity:0}}</style>`,
-    text: '🌍 <strong>GRAVITY</strong> — A non-contact force pulls the ball DOWN toward Earth\'s center. It works through air with no touching!'
-  },
-  stop: {
-    html: `<div style="width:100%;padding:20px;position:relative;height:120px;overflow:hidden">
-      <div id="slidingBall" style="position:absolute;left:10px;top:40px;font-size:2rem;animation:slide 3s ease-out infinite">⚽</div>
-      <div style="position:absolute;bottom:20px;left:0;right:0;height:4px;background:rgba(155,77,255,0.4)"></div>
-      <div style="position:absolute;top:70px;left:50%;transform:translateX(-50%);font-size:0.75rem;color:var(--purple);font-weight:800">← FRICTION slows it down →</div>
-    </div>
-    <style>@keyframes slide{0%{left:10px;opacity:1}70%{left:calc(90% - 40px);opacity:1}85%{left:calc(92% - 40px)}100%{left:10px;opacity:0}}</style>`,
-    text: '🛑 <strong>FRICTION</strong> — A contact force that <strong>opposes motion</strong>. The ground pushes back on the ball, slowing it to a stop!'
-  }
-};
-
-function showForce(type){
-  document.getElementById('forceDisplay').innerHTML = forceScenes[type].html;
-  document.getElementById('forceExplain').innerHTML = forceScenes[type].text;
+async function initBin() {
+  const key = getKey();
+  if (!key) { setStatus('Please paste your master API key first.', 'err'); return; }
+  setStatus('Loading answers\u2026');
+  try {
+    const r = await fetch(JSONBIN + '/b/' + getBin() + '/latest', { headers: { 'X-Master-Key': key } });
+    const d = await r.json();
+    if (!r.ok) { setStatus('Error: ' + (d.message || r.status), 'err'); return; }
+    const rec = d.record || {};
+    QS.forEach(q => { const el = document.getElementById(q); if (el && rec[q]) el.value = rec[q]; });
+    updateProgress();
+    saveConfig();
+    setStatus('Answers loaded successfully.', 'ok');
+    toast('Answers loaded');
+  } catch(e) { setStatus('Network error: ' + e.message, 'err'); }
 }
 
-// ===== MATCHING GAME =====
-let matchLeft = null, matchRight = null, matchScore = 0;
-
-function matchSelect(side, key, el){
-  if(el.classList.contains('matched')) return;
-
-  if(side==='left'){
-    document.querySelectorAll('#matchLeft .match-item').forEach(i=>i.classList.remove('selected'));
-    el.classList.add('selected');
-    matchLeft = {key, el};
-  } else {
-    document.querySelectorAll('#matchRight .match-item').forEach(i=>i.classList.remove('selected'));
-    el.classList.add('selected');
-    matchRight = {key: el.dataset.answer, el};
-  }
-
-  if(matchLeft && matchRight){
-    if(matchLeft.key === matchRight.key){
-      matchLeft.el.classList.add('matched'); matchLeft.el.classList.remove('selected');
-      matchRight.el.classList.add('matched'); matchRight.el.classList.remove('selected');
-      matchScore++;
-      document.getElementById('matchFeedback').innerHTML = `<span style="color:var(--lime)">✅ Correct! ${getMatchMsg()}</span>`;
-      if(matchScore===6) document.getElementById('matchFeedback').innerHTML = `<span style="color:var(--lime)">🎉 PERFECT! You matched all 6! You're a Simple Machines expert! 🔧</span>`;
-    } else {
-      matchLeft.el.style.animation = 'shake 0.4s';
-      matchRight.el.style.animation = 'shake 0.4s';
-      setTimeout(()=>{
-        matchLeft.el.style.animation='';
-        matchRight.el.style.animation='';
-        matchLeft.el.classList.remove('selected');
-        matchRight.el.classList.remove('selected');
-      },400);
-      document.getElementById('matchFeedback').innerHTML = `<span style="color:#FF9999">❌ Not quite — try again!</span>`;
-    }
-    matchLeft = null; matchRight = null;
-  }
-}
-
-const matchMsgs = ['Keep going!','Nice one! 🔥','You\'re on fire! ⚡','Crushing it! 💪','Almost there! 🌟'];
-let matchMsgIdx = 0;
-function getMatchMsg(){ return matchMsgs[matchMsgIdx++ % matchMsgs.length]; }
-
-function resetMatch(){
-  matchLeft=null;matchRight=null;matchScore=0;matchMsgIdx=0;
-  document.querySelectorAll('.match-item').forEach(el=>{el.classList.remove('matched','selected');});
-  document.getElementById('matchFeedback').innerHTML='';
-}
-
-// ===== BALL CANVAS =====
-let ballAnim;
-function animateBall(){
-  const canvas = document.getElementById('ballCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  canvas.width = canvas.offsetWidth;
-  canvas.height = 200;
-  const W = canvas.width, H = canvas.height;
-  let t = 0;
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    // Ramp
-    ctx.beginPath();
-    ctx.moveTo(20,20);
-    ctx.lineTo(W-30,H-30);
-    ctx.strokeStyle='rgba(255,255,255,0.2)';
-    ctx.lineWidth=3;
-    ctx.stroke();
-    // Ground
-    ctx.fillStyle='rgba(255,255,255,0.08)';
-    ctx.fillRect(0,H-28,W,28);
-
-    // Ball position along ramp
-    const progress = Math.min(t/2,1);
-    const bx = 30 + (W-60)*progress;
-    const by = 30 + (H-60)*progress;
-    const radius = 18;
-
-    // PE/KE bars
-    const pe = 1-progress;
-    const ke = progress;
-    ctx.fillStyle='rgba(155,77,255,0.3)';
-    ctx.fillRect(10,H-24,80*pe,10);
-    ctx.fillStyle='#9B4DFF';
-    ctx.fillRect(10,H-24,80*pe,10);
-
-    ctx.fillStyle='rgba(255,123,0,0.3)';
-    ctx.fillRect(W-90,H-24,80*ke,10);
-    ctx.fillStyle='#FF7B00';
-    ctx.fillRect(W-90,H-24,80*ke,10);
-
-    ctx.font='10px Nunito,sans-serif';
-    ctx.fillStyle='rgba(155,77,255,0.9)';
-    ctx.fillText('PE',10,H-10);
-    ctx.fillStyle='rgba(255,123,0,0.9)';
-    ctx.fillText('KE',W-90,H-10);
-
-    // Ball gradient
-    const grad = ctx.createRadialGradient(bx-4,by-4,2,bx,by,radius);
-    grad.addColorStop(0,'#FFAA00');
-    grad.addColorStop(0.5,'#FF5500');
-    grad.addColorStop(1,'#AA2200');
-    ctx.beginPath();
-    ctx.arc(bx,by,radius,0,Math.PI*2);
-    ctx.fillStyle=grad;
-    ctx.fill();
-    ctx.strokeStyle='rgba(255,200,0,0.6)';
-    ctx.lineWidth=2;
-    ctx.stroke();
-
-    // Energy label
-    const energyLab = document.getElementById('energyLabel');
-    if(energyLab){
-      if(progress<0.1) energyLab.textContent='⬆️ At the top = ALL Potential Energy!';
-      else if(progress<0.5) energyLab.textContent='⚡ PE converting to KE as it slides down...';
-      else if(progress<0.9) energyLab.textContent='🔥 Almost there — mostly KE now!';
-      else energyLab.textContent='⬇️ At the bottom = ALL Kinetic Energy!';
-    }
-
-    t += 0.012;
-    if(t<2.2) ballAnim = requestAnimationFrame(draw);
-    else setTimeout(resetBall,1500);
-  }
-  draw();
-}
-
-function resetBall(){
-  if(ballAnim) cancelAnimationFrame(ballAnim);
-  const el = document.getElementById('energyLabel');
-  if(el) el.textContent='⬆️ At the top = all PE';
-  animateBall();
-}
-
-// Start when in view
-const ballObserver = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){animateBall();ballObserver.unobserve(e.target);}});
-},{threshold:0.3});
-const ballCanvas = document.getElementById('ballCanvas');
-if(ballCanvas) ballObserver.observe(ballCanvas);
-
-// ===== ENERGY SOURCES GAME =====
-const energySources = [
-  {name:'☀️ Solar',type:'renewable',info:'From the Sun — free and clean!'},
-  {name:'💨 Wind',type:'renewable',info:'Wind turbines convert motion to electricity!'},
-  {name:'🛢️ Oil',type:'nonrenewable',info:'Fossil fuel — takes millions of years to form!'},
-  {name:'💧 Hydro',type:'renewable',info:'Flowing water spins turbines!'},
-  {name:'⛏️ Coal',type:'nonrenewable',info:'Burns dirty — major cause of climate change!'},
-  {name:'🌿 Biomass',type:'renewable',info:'From plants and organic waste!'},
-  {name:'⛽ Natural Gas',type:'nonrenewable',info:'Fossil fuel — cleaner than coal but still pollutes!'},
-  {name:'🌋 Geothermal',type:'renewable',info:'Earth\'s internal heat — lasts billions of years!'},
-];
-
-const grid = document.getElementById('energyGrid');
-energySources.sort(()=>Math.random()-0.5).forEach(src=>{
-  const btn = document.createElement('button');
-  btn.className='energy-source-btn';
-  btn.style.borderColor='rgba(255,255,255,0.2)';
-  btn.textContent=src.name;
-  btn.onclick=function(){
-    if(src.type==='renewable'){
-      btn.style.background='rgba(184,255,0,0.2)';
-      btn.style.borderColor='var(--lime)';
-      btn.style.color='var(--lime)';
-      document.getElementById('energyResult').innerHTML=`<span style="color:var(--lime)">✅ ${src.name} is <strong>RENEWABLE</strong>! ${src.info}</span>`;
-    } else {
-      btn.style.background='rgba(255,68,68,0.2)';
-      btn.style.borderColor='#FF4444';
-      btn.style.color='#FF9999';
-      document.getElementById('energyResult').innerHTML=`<span style="color:#FF9999">❌ ${src.name} is <strong>NOT Renewable</strong>! ${src.info}</span>`;
-    }
-  };
-  grid.appendChild(btn);
-});
-
-// ===== QUIZ =====
-const questions = [
-  // --- FORCES & MOTION ---
-  {
-    emoji:'🧲',
-    q:'Viktoria holds a magnet near a nail without touching it, and the nail flies toward the magnet. Which statement BEST describes the force acting on the nail?',
-    options:['A. A contact force, because both objects move','B. A non-contact force, because no touching is needed','C. Friction, because the nail slides across the surface','D. Compression, because the magnet squeezes the nail'],
-    correct:1,
-    feedback:'Magnetism is a NON-CONTACT force — it acts at a distance without the magnet touching the nail. Like gravity, it can pull objects without any physical contact. Friction (C) requires surfaces touching; compression (D) is an internal structural force.'
-  },
-  {
-    emoji:'🚗',
-    q:'Amar\'J pushes his toy car forward. It rolls for a bit, then slows down and stops on its own. What force causes the car to slow down?',
-    options:['A. Gravity — it pulls the car downward','B. Tension — the road stretches the car','C. Friction — the ground resists the car\'s motion','D. Applied force — Amar\'J\'s push wears off'],
-    correct:2,
-    feedback:'FRICTION is a contact force that OPPOSES motion. The car\'s tyres rub against the floor; friction acts in the opposite direction to the car\'s movement, slowing it down. Gravity (A) pulls DOWN, not backward. "A push wearing off" (D) is not a force — forces don\'t just wear out!'
-  },
-  {
-    emoji:'⚽',
-    q:'Coryn kicks a football. The ball was sitting still, and after the kick it flies through the air. Which TWO changes did the force cause?',
-    options:['A. It changed the ball\'s direction AND started its motion','B. It changed the ball\'s shape AND made it heavier','C. It only changed the ball\'s colour','D. It removed gravity from acting on the ball'],
-    correct:0,
-    feedback:'A force can START motion (ball goes from still to moving) and CHANGE DIRECTION (ball went from "not moving anywhere" to "flying toward the goal"). Forces can also stop motion and change shape — but here the kick started motion AND changed direction from stationary. Gravity (D) still acts on the ball — that\'s why it curves back to the ground!'
-  },
-  {
-    emoji:'🌍',
-    q:'Two objects fall from the same height: a heavy book and a small eraser. Ignoring air resistance, which hits the ground first?',
-    options:['A. The heavy book — gravity pulls harder on heavier things','B. The small eraser — it is lighter and falls faster','C. They hit at the same time — gravity accelerates all objects equally','D. Neither — objects with different masses can\'t be compared'],
-    correct:2,
-    feedback:'This is one of science\'s great surprises! Gravity accelerates ALL objects at the same rate (on Earth: 9.8 m/s²), regardless of mass. A feather and a bowling ball dropped on the Moon (no air) hit at EXACTLY the same time. Air resistance, not gravity, is why a feather falls slowly on Earth.'
-  },
-  // --- INTERNAL FORCES ---
-  {
-    emoji:'🏗️',
-    q:'A suspension bridge has thick steel cables that run from the top of the towers down to the bridge deck. What internal force do these cables experience when cars drive across?',
-    options:['A. Compression — the cars squash the cables downward','B. Torsion — the cars twist the cables as they move','C. Tension — the weight of cars stretches the cables','D. Shear — the cars slide the cables sideways'],
-    correct:2,
-    feedback:'TENSION! The cables hang from the towers and support the weight of the deck and traffic below — they are being PULLED/STRETCHED. That stretch force inside the cable is tension. If you imagine tugging both ends of a rubber band, that\'s tension. Compression (A) would be squashing — cables can\'t be squashed, they\'d just go slack!'
-  },
-  {
-    emoji:'🧱',
-    q:'Miquea notices that the stone pillars under a highway bridge are much thicker and shorter than the cables above. Why are pillars built this way?',
-    options:['A. To look more attractive than thin pillars','B. Because thick short shapes resist compression better — which is what pillars experience','C. Because pillars experience tension and need to stretch easily','D. To reduce torsion caused by passing wind'],
-    correct:1,
-    feedback:'Pillars carry the WEIGHT of the bridge (compression — being squashed from above). Short, thick, solid shapes resist crushing best. Cables are long and thin because they carry TENSION (being stretched) — different forces need different shapes! This is why engineers study forces before building.'
-  },
-  {
-    emoji:'✂️',
-    q:'During an earthquake, one side of a building tries to move LEFT while the other side moves RIGHT at the same time. Which internal force does the building experience?',
-    options:['A. Tension — the building is being stretched top to bottom','B. Compression — the earthquake squashes the building','C. Shear — opposite parts of the building are sliding against each other','D. Torsion — the earthquake spins the building'],
-    correct:2,
-    feedback:'SHEAR! When two adjacent parts of a material try to SLIDE PAST EACH OTHER in opposite directions, that\'s shear. Earthquakes produce intense shear forces. Buildings are built with special reinforcement (like steel rebar) to resist shear so they don\'t crack apart. Torsion (D) is twisting, not opposing slides.'
-  },
-  {
-    emoji:'🌀',
-    q:'Sydney is wringing out a wet towel — twisting both ends in opposite directions. Which of the following ALSO experiences the same type of internal force?',
-    options:['A. A book being pressed flat — compression','B. A bridge cable being stretched — tension','C. A skyscraper in a hurricane being twisted by wind — torsion','D. Scissors cutting through paper — shear'],
-    correct:2,
-    feedback:'TORSION is the twisting force! Wringing a towel, twisting a bolt, and a skyscraper being twisted by strong wind all involve torsion. The material inside resists being twisted out of shape. Clever engineers design buildings with circular or triangulated cross-sections to better resist torsion from wind!'
-  },
-  {
-    emoji:'🦺',
-    q:'A seatbelt stops Leila from flying forward during a sudden car stop. Which internal force acts INSIDE the seatbelt material as it restrains her?',
-    options:['A. Compression — the belt is being squashed','B. Torsion — the belt twists around her body','C. Shear — the belt slides sideways','D. Tension — the belt is being stretched and pulls back'],
-    correct:3,
-    feedback:'TENSION! As Leila\'s body flies forward, the belt is pulled tight — stretched from both ends. The fibres inside the belt resist being pulled apart (tension). This is exactly the same force in bridge cables! The belt\'s tension is what keeps Leila safe. Compression (A) would be squashing — the belt isn\'t being squashed.'
-  },
-  // --- SIMPLE MACHINES ---
-  {
-    emoji:'🔩',
-    q:'Andre says a screw is just a different form of an inclined plane. Is he correct, and why?',
-    options:['A. No — a screw is a type of lever because it rotates','B. No — a screw is a completely different machine with no connection to a ramp','C. Yes — a screw is an inclined plane wrapped in a spiral around a cylinder','D. Yes — a screw is two inclined planes joined back-to-back'],
-    correct:2,
-    feedback:'Andre is 100% correct! If you unrolled a screw\'s spiral thread, it would form a long, gentle ramp (inclined plane). When you turn the screw, you\'re essentially moving something along that ramp — which is why less force is needed than simply pushing it straight in. A WEDGE (D) is two inclined planes back-to-back, not a screw.'
-  },
-  {
-    emoji:'⚖️',
-    q:'Adiaha uses a crowbar to lift a heavy rock. She places the crowbar under the rock with the fulcrum CLOSE to the rock. What happens to the effort Adiaha needs?',
-    options:['A. She needs MORE effort — the shorter effort arm is harder','B. She needs LESS effort — the longer effort arm gives more mechanical advantage','C. The effort stays the same — moving the fulcrum doesn\'t change anything','D. She needs less effort only if the rock is made of metal'],
-    correct:1,
-    feedback:'LEVER LAW! When the fulcrum is close to the load (rock), the effort arm (Adiaha\'s side) is LONGER. A longer effort arm means more mechanical advantage — less force needed over a greater distance. This is why crowbars have long handles! Moving the fulcrum AWAY from the load makes it HARDER, not easier.'
-  },
-  {
-    emoji:'🏗️',
-    q:'A construction crane uses a pulley system to lift a 500 kg steel beam. Compared to lifting it directly, the pulley system means the worker needs to pull:',
-    options:['A. More rope but with less force needed','B. Less rope and less force — pulleys reduce both','C. More rope and more force — pulleys make it harder','D. The same force — pulleys only change direction, never force'],
-    correct:0,
-    feedback:'Pulleys give you a trade-off: LESS FORCE needed, but you must pull MORE ROPE. A single pulley only changes direction. Multiple pulleys (a block-and-tackle) can halve the force needed, but you must pull twice as much rope. You never get something for nothing in physics — you trade force for distance!'
-  },
-  {
-    emoji:'🔪',
-    q:'Kosi sharpens a knife to a thinner, finer edge. What effect does making the blade thinner have on its ability to cut?',
-    options:['A. It makes cutting harder — less material means less force','B. It concentrates the applied force into a smaller area, making it cut more easily','C. It changes the knife from a wedge to a lever','D. A thinner blade makes no difference — only the material matters'],
-    correct:1,
-    feedback:'The knife is a WEDGE, and a sharper wedge is more effective! By making the cutting edge thinner, the same downward force is concentrated into a TINY area — creating much greater pressure on the object being cut. This is why sharp knives cut easily and dull ones require much more force. Pressure = Force ÷ Area!'
-  },
-  {
-    emoji:'🚪',
-    q:'Jordan notices it\'s much easier to open a door by pushing near the outer edge than near the hinges. Which simple machine principle explains this?',
-    options:['A. Pulley — the door acts like a wheel','B. Inclined plane — the door is angled','C. Lever — the hinge is the fulcrum; pushing far from it gives more turning force','D. Screw — the door handle converts rotation to motion'],
-    correct:2,
-    feedback:'LEVER! The door is a lever where the HINGE is the fulcrum. The farther you push from the fulcrum (hinge), the greater your turning force (torque). That\'s why door handles are always on the opposite side from the hinges — maximum mechanical advantage with minimum effort. Try pushing right next to the hinge — it\'s really hard!'
-  },
-  // --- ENERGY ---
-  {
-    emoji:'💡',
-    q:'Luke\'s phone battery slowly drains as he watches videos. Which energy transformation is happening?',
-    options:['A. Mechanical → Chemical → Light','B. Chemical (battery) → Electrical → Light, Sound, and Thermal','C. Solar → Electrical → Sound','D. Thermal → Mechanical → Light'],
-    correct:1,
-    feedback:'Energy transformation chain: The battery stores CHEMICAL energy → releases ELECTRICAL energy → the screen converts it to LIGHT energy, the speaker to SOUND energy, and the phone\'s circuits release THERMAL (heat) energy. That\'s why phones get warm! This is why your battery drains faster watching videos than just texting.'
-  },
-  {
-    emoji:'🌞',
-    q:'A solar panel on the roof converts sunlight into electricity to power Aeva\'s house. What energy transformation is occurring?',
-    options:['A. Thermal energy → Chemical energy','B. Mechanical energy → Electrical energy','C. Light energy → Electrical energy','D. Electrical energy → Light energy'],
-    correct:2,
-    feedback:'Solar panels perform the transformation: LIGHT energy (from the Sun) → ELECTRICAL energy. The photovoltaic cells in solar panels absorb photons of light and release electrons, creating electric current. Note: option D is the REVERSE — that\'s what a light BULB does (electrical → light)!'
-  },
-  {
-    emoji:'🎸',
-    q:'Adiaha strums her guitar. Identify the correct sequence of energy transformations from her hand to her ears.',
-    options:['A. Chemical → Mechanical → Sound → Thermal','B. Mechanical → Sound → Electrical → Light','C. Chemical (food) → Mechanical (strumming) → Sound (vibrations through air) → Detected by ears','D. Thermal → Sound → Chemical → Mechanical'],
-    correct:2,
-    feedback:'Perfect chain! Adiaha ate food (CHEMICAL energy) → her muscles move her hand (MECHANICAL energy) → the string vibrates and creates waves through the air (SOUND energy) → her ears detect the vibrations. Every energy transformation involves some loss as THERMAL energy (heat), which is why musicians eventually feel warm after playing!'
-  },
-  {
-    emoji:'🔋',
-    q:'Which of the following is NOT an example of chemical energy?',
-    options:['A. Petrol in a car\'s fuel tank','B. Food in Zamari\'s stomach','C. A compressed spring about to release','D. A charged battery'],
-    correct:2,
-    feedback:'A compressed spring stores MECHANICAL potential energy (elastic potential energy), NOT chemical energy. Chemical energy is stored in the bonds between atoms and is released through chemical reactions. Petrol burns (chemical reaction), food is digested (chemical reactions), batteries use electrochemical reactions — but a spring is purely mechanical!'
-  },
-  // --- POTENTIAL & KINETIC ENERGY ---
-  {
-    emoji:'🎢',
-    q:'A roller coaster has 3 hills. Hill 1 is tallest, Hill 2 is medium, Hill 3 is shortest. At which point does the car have the GREATEST kinetic energy?',
-    options:['A. At the TOP of Hill 1 — highest position, most energy stored','B. At the BOTTOM after Hill 1 — all PE has converted to KE','C. At the TOP of Hill 2 — the car is moving faster by now','D. At the TOP of Hill 3 — closest to the end of the ride'],
-    correct:1,
-    feedback:'At the TOP of Hill 1, the car has maximum POTENTIAL energy (highest height) and minimum KE. As it races DOWN, all that PE converts to KE. At the BOTTOM of Hill 1, PE is at its lowest and KE is at its maximum — the car is moving fastest! Each subsequent hill is lower because energy is gradually lost to friction and air resistance.'
-  },
-  {
-    emoji:'⚡',
-    q:'Adiaha holds a stretched rubber band ready to launch a paper ball across the room. Before she releases it, what type of energy does the rubber band have?',
-    options:['A. Kinetic energy — it is ready to move','B. Thermal energy — it gets warm when stretched','C. Elastic potential energy — it is stored energy due to its stretched position','D. Chemical energy — rubber is made of chemicals'],
-    correct:2,
-    feedback:'ELASTIC POTENTIAL ENERGY — a special type of potential energy stored in a stretched or compressed elastic material. When released, that elastic PE converts to KE (the paper ball flies!). It\'s still potential energy — energy waiting to be released. Kinetic (A) is only when something is ACTUALLY moving, not waiting to move.'
-  },
-  {
-    emoji:'💧',
-    q:'Water sits in a dam at the top of a hill. Engineers release it and it flows down, spinning turbines to make electricity. Put the energy transformations in order:',
-    options:['A. Kinetic → Potential → Electrical → Mechanical','B. Potential → Kinetic → Mechanical → Electrical','C. Electrical → Kinetic → Potential → Thermal','D. Chemical → Potential → Kinetic → Electrical'],
-    correct:1,
-    feedback:'Follow the energy! Water at the top of the dam: POTENTIAL energy (stored due to height) → flows downhill, KINETIC energy (moving water) → hits turbine blades, MECHANICAL energy (spinning turbines) → generator produces ELECTRICAL energy. This is hydropower! The renewable energy source where gravity does the work for free.'
-  },
-  // --- HEAT TRANSFER ---
-  {
-    emoji:'🔥',
-    q:'Vihan touches a metal bench in the hot sun and finds it much hotter than the wooden bench right next to it. Both benches have been in the same sunlight. Why?',
-    options:['A. Metal absorbed more radiation from the sun than wood','B. Metal is a better conductor — it transfers heat from particles to Vihan\'s hand faster','C. Wood is cooler because it reflects all the sunlight','D. Metal is heavier, and heavier objects store more heat'],
-    correct:1,
-    feedback:'Both benches absorbed similar amounts of heat from radiation (sunlight), but METAL is a far better CONDUCTOR than wood. When Vihan touches the metal, heat conducts rapidly from the metal into his hand — making it feel scorching. Wood is an insulator; heat conducts slowly, so it feels cooler even at the same temperature. This is why metal spoons burn and wooden spoons don\'t!'
-  },
-  {
-    emoji:'🏠',
-    q:'On a cold night, heat escapes through the walls of a house. Architects install foam insulation inside the walls. HOW does this reduce heat loss?',
-    options:['A. Foam reflects all radiation back into the house','B. Foam is a poor conductor — it slows heat transfer by conduction through the walls','C. Foam creates convection currents that push heat back inside','D. Foam converts thermal energy back into chemical energy'],
-    correct:1,
-    feedback:'Foam insulation works by being a very POOR CONDUCTOR (an insulator). Heat trying to escape through the walls by conduction is slowed dramatically. Foam traps tiny air pockets — air is also a poor conductor. This is the same principle as a winter coat trapping warm air! Option A is partially true for radiation with reflective insulation (foil), but foam works mainly by blocking conduction.'
-  },
-  {
-    emoji:'🌡️',
-    q:'Anna places her hand near (but NOT touching) a campfire and feels warm. She then places her hand in water heated by convection currents. Which heat transfer method is each example?',
-    options:['A. Both are convection — water and air are both fluids','B. Both are conduction — both involve particles passing heat','C. First is radiation (campfire to hand through air), second is convection (heated water currents)','D. First is conduction, second is radiation'],
-    correct:2,
-    feedback:'RADIATION from the campfire — the heat travels as waves through the air WITHOUT the air itself carrying it (you feel it even without touching the fire or moving air). CONVECTION in the heated water — hot water rises, creating currents that carry the heat to Anna\'s hand. Two different transfer methods! Tricky because both involve "feeling heat at a distance."'
-  },
-  {
-    emoji:'❄️',
-    q:'Zalia wraps her hot chocolate cup with a thick cloth. The chocolate stays hot much longer. Which heat transfer method is the cloth MAINLY preventing?',
-    options:['A. Radiation only — cloth blocks heat waves','B. Convection only — cloth stops air currents around the cup','C. Conduction mainly — cloth is an insulator that slows heat escaping from the cup into the surrounding air','D. The cloth stores the heat inside the chocolate chemically'],
-    correct:2,
-    feedback:'Mainly CONDUCTION — the cloth acts as an insulator, dramatically slowing the conduction of heat from the hot cup through the cloth into the cooler air. It also reduces convection slightly (less exposed surface), but conduction is the primary method being blocked here. This is why your thermos flask uses an insulating vacuum — no material means no conduction or convection, only tiny radiation!'
-  },
-  // --- RENEWABLE ENERGY ---
-  {
-    emoji:'🌱',
-    q:'Natural gas burns cleaner than coal and produces less pollution. Shiloh argues that natural gas should be considered "green energy." Is she correct?',
-    options:['A. Yes — it produces less pollution so it counts as renewable','B. Yes — gas comes from the ground naturally, so it\'s a natural resource','C. No — natural gas is still a fossil fuel that takes millions of years to form and releases CO₂ when burned','D. No — but only because it\'s more expensive than solar'],
-    correct:2,
-    feedback:'Shiloh is WRONG! Even though natural gas is cleaner than coal, it is still a FOSSIL FUEL — formed from ancient organisms over millions of years. When burned, it releases CO₂ (a greenhouse gas). "Cleaner" does NOT mean "clean" or "renewable." Renewable means it replenishes naturally in a short time. Natural gas does NOT — once used, it\'s gone for millions of years.'
-  },
-  {
-    emoji:'🌋',
-    q:'St. Kitts sits near geologically active Caribbean plates. How could St. Kitts potentially use geothermal energy?',
-    options:['A. By building wind turbines on top of volcanoes','B. By drilling into the Earth to access steam and hot water, which drives turbines to generate electricity','C. By using the heat of the sun reflected off volcanic rock','D. By burning volcanic rock as a fuel source'],
-    correct:1,
-    feedback:'Geothermal energy taps the Earth\'s internal heat! Near volcanically active areas (like the Caribbean), hot water and steam exist naturally underground. Drill down, release the steam, and it spins turbines to make electricity — with zero burning and zero CO₂ emissions. Iceland gets over 25% of its electricity this way! Nearby Nevis has actually explored geothermal development for exactly this reason.'
-  },
-  {
-    emoji:'💨',
-    q:'A wind turbine converts wind into electricity. Which sequence of energy transformations is CORRECT?',
-    options:['A. Electrical → Mechanical → Kinetic','B. Chemical → Thermal → Electrical','C. Kinetic (wind) → Mechanical (spinning blades) → Electrical (generator)','D. Potential → Chemical → Electrical'],
-    correct:2,
-    feedback:'Wind turbine energy chain: Moving air has KINETIC energy → it pushes the blades, creating MECHANICAL energy (rotation) → the rotating shaft spins a generator that produces ELECTRICAL energy. This is essentially the same as a hydropower turbine, but powered by wind instead of water. Both convert motion (kinetic) → mechanical → electrical!'
-  },
-  // --- CONSERVE & PRESERVE ---
-  {
-    emoji:'♻️',
-    q:'The 3 Rs are listed in order of environmental importance: Reduce, Reuse, Recycle. Kosi argues that recycling is the most important R because it makes new things from waste. Is he right, and why?',
-    options:['A. Yes — recycling creates new products, which is the best solution','B. No — Reduce is most important because preventing waste in the first place uses the least energy and resources','C. No — Reuse is most important because it saves the most money','D. All three Rs are equally important — order doesn\'t matter'],
-    correct:1,
-    feedback:'Kosi is WRONG! REDUCE is most important — if you don\'t create waste in the first place, no energy is needed to reuse or recycle it. Recycling (while better than landfill) still requires energy to collect, transport, and process materials. Producing a new aluminium can from recycled metal uses 95% less energy than making one from scratch — but making NO can at all uses 100% less energy!'
-  },
-  {
-    emoji:'🌿',
-    q:'The government creates a protected marine area around St. Kitts where no fishing is allowed. Which word BEST describes this action?',
-    options:['A. Conserve — they are using the fish wisely','B. Recycle — they are returning fish to the ocean','C. Preserve — they are protecting the ecosystem from harm or destruction','D. Reduce — they are reducing the amount of fishing'],
-    correct:2,
-    feedback:'PRESERVE! Preservation means protecting a natural resource or environment from harm, destruction, or overuse — keeping it as it is. A no-fishing marine protected area is classic preservation. CONSERVATION (A) would be allowing SOME fishing but managing it carefully (using wisely). The key difference: preserve = protect from harm, conserve = use wisely/use less.'
-  },
-  {
-    emoji:'🏭',
-    q:'Burning fossil fuels releases carbon dioxide (CO₂) into the atmosphere. Which of the following is the BEST explanation of why this is a problem?',
-    options:['A. CO₂ is poisonous to breathe in large quantities near factories','B. CO₂ traps heat in the atmosphere (greenhouse effect), causing global temperatures to rise and climate to change','C. CO₂ destroys the ozone layer, allowing UV radiation to reach Earth','D. CO₂ reacts with rainwater to create acid that destroys buildings'],
-    correct:1,
-    feedback:'CO₂ is the main GREENHOUSE GAS — it traps heat in the Earth\'s atmosphere like a blanket, causing the planet\'s average temperature to rise (global warming) which changes weather patterns (climate change). Option C describes CFCs destroying the ozone layer (a separate but related problem). Option D describes acid rain, caused mainly by sulphur dioxide (SO₂) from burning coal — also a problem, but not caused by CO₂.'
-  },
-  {
-    emoji:'🌳',
-    q:'Adiaha plants 5 trees on Earth Day. Each tree absorbs about 22 kg of CO₂ per year. If all 18 students in her class each plant 5 trees, how much CO₂ will the class remove from the atmosphere each year?',
-    options:['A. 110 kg of CO₂ per year','B. 396 kg of CO₂ per year','C. 1,980 kg of CO₂ per year','D. 22 kg of CO₂ per year'],
-    correct:2,
-    feedback:'Let\'s work it out: 18 students × 5 trees each = 90 trees total. 90 trees × 22 kg CO₂ per tree per year = 1,980 kg of CO₂ per year! That\'s nearly 2 tonnes of CO₂ removed every year just from one class planting trees on one day. Imagine the whole school! This is why reforestation is one of our most powerful climate tools. 🌳'
-  }
-];
-
-let currentQ = 0, score = 0, answered = false, wrongAnswers = [];
-
-function renderProgress(){
-  const prog = document.getElementById('quizProgress');
-  prog.innerHTML = '';
-  questions.forEach((q,i)=>{
-    const dot = document.createElement('div');
-    dot.className='q-dot';
-    if(i<currentQ){
-      const was = wrongAnswers.find(w=>w.index===i);
-      dot.classList.add(was?'wrong':'done');
-    } else if(i===currentQ) dot.classList.add('active');
-    prog.appendChild(dot);
-  });
-}
-
-function renderQuestion(){
-  if(currentQ>=questions.length){ showResults(); return; }
-  answered = false;
-  const q = questions[currentQ];
-  renderProgress();
-  document.getElementById('scoreBadge').textContent=`Score: ${score} / ${currentQ}`;
-  document.getElementById('nextBtn').style.display='none';
-
-  document.getElementById('quizContent').innerHTML=`
-    <div class="q-number">Question ${currentQ+1} of ${questions.length}</div>
-    <span class="q-emoji">${q.emoji}</span>
-    <div class="q-text">${q.q}</div>
-    <div class="options-grid" id="optionsGrid">
-      ${q.options.map((opt,i)=>`
-        <button class="option-btn" onclick="selectAnswer(${i})" id="opt${i}">${opt}</button>
-      `).join('')}
-    </div>
-    <div class="feedback-box" id="feedbackBox"></div>
-  `;
-}
-
-function selectAnswer(idx){
-  if(answered) return;
-  answered = true;
-  const q = questions[currentQ];
-  const fb = document.getElementById('feedbackBox');
-  const btns = document.querySelectorAll('.option-btn');
-  btns.forEach(b=>b.disabled=true);
-
-  if(idx===q.correct){
-    btns[idx].classList.add('correct');
-    fb.className='feedback-box correct-fb';
-    fb.innerHTML=`✅ Correct! ${q.feedback}`;
-    score++;
-  } else {
-    btns[idx].classList.add('wrong');
-    btns[q.correct].classList.add('correct');
-    fb.className='feedback-box wrong-fb';
-    fb.innerHTML=`❌ Not quite. The correct answer is <strong>${q.options[q.correct]}</strong>. ${q.feedback}`;
-    wrongAnswers.push({index:currentQ, q:q.q, correct:q.options[q.correct], picked:q.options[idx]});
-  }
-  document.getElementById('scoreBadge').textContent=`Score: ${score} / ${currentQ+1}`;
-  document.getElementById('nextBtn').style.display='block';
-}
-
-function nextQuestion(){
-  currentQ++;
-  renderQuestion();
-}
-
-function showResults(){
-  renderProgress();
-  const pct = Math.round(score/questions.length*100);
-  let emoji, msg, color;
-  if(pct>=90){ emoji='🏆'; msg=`SPECTACULAR! ${score}/${questions.length}! These were HARD questions and you crushed them! Adiaha, you are a certified Science Superstar — forces, energy, machines, heat transfer, ALL of it! June 17th doesn't stand a chance! 🌟⚡`; color='var(--lime)'; }
-  else if(pct>=70){ emoji='🌟'; msg=`AWESOME! ${score}/${questions.length}! These were challenging application questions and you did great! Review the ones you missed, focus on WHY the right answer is right, and you\'ll be unstoppable on exam day! 💪`; color='var(--yellow)'; }
-  else if(pct>=50){ emoji='💪'; msg=`Solid effort! ${score}/${questions.length}. These 30 questions required real thinking — not just recall! Read through your wrong answers below carefully, revisit those sections of the guide, then try again. You\'ve got this! 📚`; color='var(--electric-blue)'; }
-  else { emoji='📚'; msg=`${score}/${questions.length} — These were genuinely tough, application-level questions! Don\'t be discouraged. Go back through the study guide section by section, understand the WHY behind each concept, then come back and try again. Growth takes practice! 🌱`; color='var(--orange)'; }
-
-  let wrongHTML = '';
-  if(wrongAnswers.length>0){
-    wrongHTML = `<div class="wrong-review">
-      <div style="font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:12px;color:var(--hot-pink)">📝 Review These:</div>
-      ${wrongAnswers.map(w=>`
-        <div class="review-item">
-          <div class="review-q">${w.q}</div>
-          <div class="review-a">✅ Correct: ${w.correct}</div>
-          <div class="review-wrong">❌ You chose: ${w.picked}</div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  document.getElementById('quizContent').innerHTML=`
-    <div class="results-screen">
-      <span class="results-emoji">${emoji}</span>
-      <div class="results-title" style="color:${color}">${pct}% — ${pct>=90?'SUPERSTAR!':pct>=70?'AMAZING!':pct>=50?'GOOD WORK!':'KEEP GOING!'}</div>
-      <div class="results-score">You scored <strong>${score} out of ${questions.length}</strong></div>
-      <div class="results-bar-wrap"><div class="results-bar" style="width:0%;background:linear-gradient(90deg,var(--hot-pink),${color})" id="resultBar"></div></div>
-      <div class="results-msg" style="color:${color}">${msg}</div>
-      ${wrongHTML}
-      <button class="btn btn-primary" onclick="restartQuiz()" style="margin-top:16px">🔄 Try Again!</button>
-    </div>
-  `;
-  setTimeout(()=>{
-    const bar = document.getElementById('resultBar');
-    if(bar) bar.style.width=pct+'%';
-  },100);
-  document.getElementById('quizNav').style.display='none';
-}
-
-function restartQuiz(){
-  currentQ=0; score=0; answered=false; wrongAnswers=[];
-  document.getElementById('quizNav').style.display='flex';
-  renderQuestion();
-}
-
-// Init quiz
-renderQuestion();
+loadConfig();
+updateProgress();
 </script>
 </body>
 </html>
